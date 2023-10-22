@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+* {
+    position: relative;
+    font-family: 'Varela Round', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: $primary_background;
+}
+
+a:visited {
+    color: $primary_color;
+    text-decoration: none;
+}
+
+p,
+a {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
