@@ -34,6 +34,12 @@ export default {
     width: 100%;
     height: 15px;
 
+    * {
+        &::selection {
+            background: none;
+        }
+    }
+
     .bar {
         position: absolute;
         width: 100%;

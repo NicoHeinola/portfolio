@@ -43,6 +43,13 @@ export default {
     border: $border_size solid;
     border-radius: 50px;
 
+    * {
+        &::selection {
+            background: none;
+        }
+    }
+
+
     .inner-bar {
         width: calc(100% - $border_size * 2);
         height: calc(100% - $border_size * 2);
