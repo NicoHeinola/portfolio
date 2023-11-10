@@ -2,7 +2,7 @@
     <div class="skill-bar" :style="`border-color: ${barBackgroundColor};`">
         <div class="inner-bar" :style="`background: ${barBackgroundColor};`">
             <div class="progress" :style="`width: ${amount}%; background: ${barForegroundColor};`">
-                <p class="text">{{ amount }}%</p>
+                <p v-if="amount >= 20" class="text">{{ amount }}%</p>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@ export default {
     props: {
         amount: {
             type: Number,
-            default: 85,
+            default: 20,
         },
         barBackgroundColor: {
             type: String,

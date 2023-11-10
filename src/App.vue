@@ -3,7 +3,7 @@
     <Navbar />
     <div class="nav-bar-hitbox"></div>
     <div class="content">
-      <Codecard />
+      <Codecard v-for="data in cardDatas" :key="'c' + data.title" :title="data.title" :image="data.image" :skill="data.skill" :description="data.description" :card-background-color="data.cardBackgroundColor" :card-expansions-color="data.cardExpansionsColor" :card-nav-hover-color="data.cardNavHoverColor" :main-bar-background-color="data.mainBarBackgroundColor" :main-bar-foreground-color="data.mainBarForegroundColor" :extension-bar-background-color="data.extensionBarBackgroundColor" :extension-bar-foreground-color="data.extensionBarForegroundColor" :extensions="data.extensions" />
     </div>
   </div>
 </template>
@@ -11,9 +11,20 @@
 <script>
 import Navbar from './components/navigation/navbar.vue';
 import Codecard from './components/code_card/codecard.vue';
+import { codeCardDatas } from './assets/data/codeCards.js';
 
 
-export default { components: { Navbar, Codecard } };
+export default {
+  components: { Navbar, Codecard },
+  data() {
+    return {
+      cardDatas: [],
+    }
+  },
+  created() {
+    this.cardDatas = codeCardDatas;
+  }
+};
 </script>
 
 <style lang="scss">

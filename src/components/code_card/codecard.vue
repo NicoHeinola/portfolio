@@ -1,16 +1,18 @@
 <template>
     <div class="full-card-container" ref="fullCardContainer">
-        <div class="card-container" @click="showExpandedCard(true)" :class="expandedCardClass">
-            <div class="code-card" :style="`background: ${cardBackgroundColor};`">
+        <div class="card-container" @mouseleave="() => { setHoveredExtension(''); setCanHoverCard(true); }" :class="expandedCardClass">
+            <div class="code-card" @click="toggleExpandedCard()" :style="`background: ${cardBackgroundColor};`" @mouseenter="setHoveredExtension(title)">
                 <div class="title-container">
                     <img class="icon" :src="image" />
                     <p class="title">{{ title }}</p>
                 </div>
-                <Skillbar :barBackgroundColor="mainBarBackgroundColor" :barForegroundColor="mainBarForegroundColor"></Skillbar>
+                <Skillbar :amount="skill" :barBackgroundColor="mainBarBackgroundColor" :barForegroundColor="mainBarForegroundColor"></Skillbar>
             </div>
+
             <div class="expansions-container">
-                <div class="expansions" :style="`background: ${cardExpansionsColor};`">
-                    <div v-for="(item, index) in extensions" :key="'ex' + index" class="expansion">
+                <div class="expansions" :style="`background: ${cardExpansionsColor};`" :class="canHoverCardClass">
+                    <div v-for="(item, index) in extensions" :key="'ex' + index" class="expansion" @mouseenter="setHoveredExtension(item.title)">
+                        <div class="hover-item" :class="getHoveredExtensionDescriptionClass(item.title) + ' ' + expandedCardClass" :style="`background: ${cardNavHoverColor}`"></div>
                         <div class="title-container">
                             <img class="icon" :src="item.image" />
                             <p class="title">{{ item.title }}</p>
@@ -19,27 +21,21 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div @click="showExpandedCard(false)" class="shadow-overlay" :class="expandedCardClass"></div>
-        <div class="expanded-card" :class="expandedCardClass">
-            <div class="nav" :style="`background: ${cardExpansionsColor};`">
-                <div @click="selectNavItem(title)" class="item" :style="navItemSelectedStyle(title)">
-                    <div class="hover-item" :style="`background: ${cardNavHoverColor}`"></div>
-                    <img class="icon" :src="image" />
-                    <p class="text">{{ title }}</p>
+            <div class="description-box" :class="hoveredExtensionClass">
+                <div v-for="(extension, index) in extensions" :key="'ex-desc' + index" class="extension-description" :class="getHoveredExtensionDescriptionClass(extension.title)">
+                    <div class="description" v-for="(text, index) in extension.description" :key="'hover-desc' + index" :style="`background: ${cardBackgroundColor};`">
+                        <img class="icon" src="icons/list-item.png" />
+                        <p class="text">
+                            {{ text.text }}
+                        </p>
+                    </div>
                 </div>
-                <div class="underline"></div>
-                <div v-for="(item, index) in extensions" @click="selectNavItem(item.title)" :key="'expanded-nav-item' + index" class="item" :style="navItemSelectedStyle(item.title)">
-                    <div class="hover-item" :style="`background: ${cardNavHoverColor}`"></div>
-                    <img class="icon small" :src="item.image" />
-                    <p class="text">{{ item.title }}</p>
-                </div>
-            </div>
-            <div class="content" :style="`background: ${cardBackgroundColor}`">
-                <div class="text-box" v-for="(item, index) in selectedItemDescription" :key="'desc-' + index">
-                    <img class="list-icon" src="icons/list-item.png" />
-                    <div class="box" :style="`background: ${cardNavHoverColor}`">
-                        <p class="text">{{ item.text }}</p>
+                <div class="extension-description" :class="getHoveredExtensionDescriptionClass(title)">
+                    <div class="description" v-for="(text, index) in description" :key="'hover-desc' + index" :style="`background: ${cardBackgroundColor};`">
+                        <img class="icon" src="icons/list-item.png" />
+                        <p class="text">
+                            {{ text.text }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -64,33 +60,74 @@ export default {
         selectedItemDescription() {
             let item = this.extensions.find(extension => this.selectedNavItem == extension.title);
             return item ? item.description : this.description;
+        },
+        hoveredExtensionDescription() {
+            if (this.hoveredExtensionName == "") {
+                return [];
+            }
+            let item = this.extensions.find(extension => this.hoveredExtensionName == extension.title);
+            return item ? item.description : this.description;
+        },
+        hoveredExtensionClass() {
+            return this.hoveredExtensionName != "" ? "show" : "";
+        },
+        canHoverCardClass() {
+            return this.canHoverCard ? "" : "disable-hover";
         }
     },
     methods: {
+        getHoveredExtensionDescription(itemName) {
+            if (itemName == "") {
+                return [];
+            }
+            let item = this.extensions.find(extension => itemName == extension.title);
+            return item ? item.description : this.description;
+        },
         showExpandedCard(show) {
             this.expandedCardOpen = show;
+        },
+        toggleExpandedCard() {
+            this.expandedCardOpen = !this.expandedCardOpen;
+            this.setCanHoverCard(false);
+            if (!this.expandedCardOpen && this.hoveredExtensionName != this.title) {
+                this.setHoveredExtension("");
+            }
         },
         selectNavItem(itemName) {
             this.selectedNavItem = itemName;
         },
         navItemSelectedStyle(itemName) {
             return this.selectedNavItem == itemName ? `background: ${this.cardBackgroundColor}` : "";
+        },
+        setHoveredExtension(itemName) {
+            if (itemName != this.title && itemName != "" && !this.expandedCardOpen) {
+                return
+            }
+
+            if (this.getHoveredExtensionDescription(itemName) == "") {
+                this.hoveredExtensionName = "";
+                return;
+            }
+
+            this.hoveredExtensionName = itemName;
+        },
+        shouldShowExtensionDescription(itemName) {
+            return this.hoveredExtensionName == itemName;
+        },
+        getHoveredExtensionDescriptionClass(itemName) {
+            return this.shouldShowExtensionDescription(itemName) ? "show" : "";
+        },
+        setCanHoverCard(canHover) {
+            this.canHoverCard = canHover;
         }
     },
     data() {
         return {
-            expandedCardOpen: true,
+            expandedCardOpen: false,
             selectedNavItem: this.title,
+            hoveredExtensionName: "",
+            canHoverCard: true,
         }
-    },
-    mounted() {
-        document.addEventListener('click', (event) => {
-            const componentElement = this.$refs.fullCardContainer;
-            // Check if user clicked outside of this component
-            if (componentElement && !componentElement.contains(event.target)) {
-                this.showExpandedCard(false);
-            }
-        });
     },
     props: {
         title: {
@@ -144,52 +181,7 @@ export default {
             default: "rgb(211, 172, 45)"
         },
         extensions: {
-            default: [{
-                title: "QT6(1)",
-                image: "icons/code/qt.webp",
-                skill: 50,
-                description: [
-                    {
-                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec venenatis nulla. Nam purus magna, dignissim et justo quis, tempus imperdiet nisl. Nunc ligula dui, tristique quis laoreet vitae, volutpat non lacus. Vivamus dignissim aliquam magna ac volutpat. Sed in felis varius, mollis orci sed, feugiat mauris. Praesent luctus hendrerit neque, ut pellentesque nisl gravida porttitor. Nam nibh risus, varius id hendrerit vitae, convallis imperdiet velit. Maecenas faucibus erat id mauris egestas, a tincidunt nibh pulvinar. Suspendisse porta, augue at convallis dictum, augue leo molestie lorem, ut placerat augue enim et erat. ",
-                    }
-                ]
-            },
-            {
-                title: "QT6(2)",
-                image: "icons/code/qt.webp",
-                skill: 20,
-                description: [
-                    {
-                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec venenatis nulla. Nam purus magna, dignissim et justo quis, tempus imperdiet nisl. Nunc ligula dui, tristique quis laoreet vitae, volutpat non lacus. Vivamus dignissim aliquam magna ac volutpat. Sed in felis varius, mollis orci sed, feugiat mauris. Praesent luctus hendrerit neque, ut pellentesque nisl gravida porttitor. Nam nibh risus, varius id hendrerit vitae, convallis imperdiet velit. Maecenas faucibus erat id mauris egestas, a tincidunt nibh pulvinar. Suspendisse porta, augue at convallis dictum, augue leo molestie lorem, ut placerat augue enim et erat. ",
-                    }
-                ]
-            },
-            {
-                title: "QT6(3)",
-                image: "icons/code/qt.webp",
-                skill: 90,
-                description: [
-                    {
-                        text: " , tempus  et erat. ",
-                    },
-                    {
-                        text: "Lorem  venenatis nulla. Nam purus magna, dignissim et justo quisipsum dolor sit amet, consectetur adipiscing elit. Duis nec"
-                    },
-                    {
-                        text: "imperdiet nisl. Nunc ligula dui, tristique quis laoreet vitae, volutpat non lacus. Vivamus dignissim aliquam magna ac volutpat. Sed in felis varius, mollis orci sed, feugiat mauris. Praesent luctus hendrerit neque, ut pellentesque nisl gravida porttitor. Nam nibh risus, varius id hendrerit vitae, convallis imperdiet velit. Maecenas faucibus erat id mauris egestas, a tincidunt nibh pulvinar. Suspendisse porta, augue at convallis dictum, augue leo molestie lorem, ut placerat augue enim"
-                    }
-                ]
-            },
-            {
-                title: "QT6(4)",
-                image: "icons/code/qt.webp",
-                skill: 15,
-                description: [
-                    {
-                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec venenatis nulla. Nam purus magna, dignissim et justo quis, tempus imperdiet nisl. Nunc ligula dui, tristique quis laoreet vitae, volutpat non lacus. Vivamus dignissim aliquam magna ac volutpat. Sed in felis varius, mollis orci sed, feugiat mauris. Praesent luctus hendrerit neque, ut pellentesque nisl gravida porttitor. Nam nibh risus, varius id hendrerit vitae, convallis imperdiet velit. Maecenas faucibus erat id mauris egestas, a tincidunt nibh pulvinar. Suspendisse porta, augue at convallis dictum, augue leo molestie lorem, ut placerat augue enim et erat. ",
-                    }
-                ]
-            }]
+            default: []
         },
     },
 
@@ -226,149 +218,85 @@ $card_shadow_hover: 0 0 25px 1px rgba(0, 0, 0, 0.466);
     }
 }
 
-.expanded-card {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    width: 650px;
-    height: 450px;
-    max-width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: $card_border_radius;
-    z-index: 200;
-    transform-origin: center center;
-    box-shadow: $card_shadow_hover;
-
-    &.expanded {
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        border-top-right-radius: $card_border_radius;
-        border-bottom-right-radius: $card_border_radius;
-        overflow-y: scroll;
-        padding: 20px;
-        width: calc(100% - 20px * 2);
-        height: calc(100% - 20px * 2);
-
-        .text-box {
-            display: flex;
-            gap: 20px;
-            width: 100%;
-            margin-bottom: 20px;
-
-            .list-icon {
-                height: 20px;
-                margin: auto;
-                aspect-ratio: 1;
-            }
-
-            .box {
-                padding: 10px;
-                border-radius: $card_border_radius;
-                width: 100%;
-            }
-
-            .text {}
-        }
-    }
-
-    .nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 200px;
-        height: 100%;
-        border-top-left-radius: $card_border_radius;
-        border-bottom-left-radius: $card_border_radius;
-        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.644);
-        z-index: 50;
-
-        *::selection {
-            background: none;
-        }
-
-        .item {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            height: 40px;
-            transition: all 0.3s;
-
-            &:hover {
-                cursor: pointer;
-
-                .hover-item {
-                    opacity: 1;
-                }
-            }
-
-            .hover-item {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                opacity: 0;
-            }
-
-            .icon {
-                height: 65%;
-                aspect-ratio: 1;
-                margin-left: 10px;
-
-                &.small {
-                    height: 50%;
-                }
-            }
-        }
-
-        .underline {
-            width: 90%;
-            margin: 10px 0;
-        }
-
-    }
-}
-
 .card-container {
     display: flex;
     flex-direction: column;
     width: 250px;
     box-shadow: $card_shadow;
-    transition: all 0.3s;
-
-    *::selection {
-        background: none;
-    }
 
     &:hover {
-        cursor: pointer;
         box-shadow: $card_shadow_hover;
 
+        .expansions:not(.disable-hover) {
+            max-height: 30px;
+        }
+    }
+
+    &.expanded {
+
         .code-card {
-            transition-duration: 0.05s;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
 
         .expansions {
-            max-height: $extensions_down_max_height;
+            filter: none;
+            top: 100%;
+            max-height: $extensions_down_max_height !important;
             box-shadow: $card_shadow_hover !important;
+
+            .expansion {
+                filter: none;
+            }
         }
     }
 
-    &.expanded {
-        opacity: 0.2;
+
+    .description-box {
+        position: absolute;
+        left: 100%;
+        z-index: 0;
+
+        .extension-description {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            pointer-events: none;
+            min-height: 400px;
+
+            &.show {
+                opacity: 1;
+                pointer-events: all;
+
+                .description {
+                    left: 40px;
+                }
+            }
+
+            .description {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                width: 400px;
+                padding: 20px;
+                left: 0px;
+                top: 0;
+                margin-bottom: 20px;
+                border-radius: $card_border_radius;
+                box-shadow: $card_shadow;
+
+                &:hover {
+                    box-shadow: $card_shadow_hover;
+                }
+
+                .icon {
+                    height: 25px;
+                    aspect-ratio: 1;
+                }
+            }
+        }
     }
 }
 
@@ -381,8 +309,16 @@ $card_shadow_hover: 0 0 25px 1px rgba(0, 0, 0, 0.466);
     background: $code_card_background;
     border-radius: $card_border_radius;
     padding: 0 20px;
-    transition-duration: 1s;
+    transition-duration: 0.6s;
     z-index: 10;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    *::selection {
+        background: none;
+    }
 
     .title-container {
         display: flex;
@@ -405,36 +341,72 @@ $card_shadow_hover: 0 0 25px 1px rgba(0, 0, 0, 0.466);
     }
 }
 
-.expansions {
-    border-bottom-left-radius: $card_border_radius;
-    border-bottom-right-radius: $card_border_radius;
-    width: 100%;
-    top: 100%;
-    max-height: 0;
-    overflow: hidden;
-    position: absolute;
-    box-shadow: $card_shadow;
 
-    .expansion {
-        margin: 20px;
+.expansions-container {
+    z-index: 5;
 
-        .title-container {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            width: 100%;
-            height: 50%;
-            margin-bottom: 5px;
 
-            .title {
-                font-weight: normal;
-                font-size: 15px;
+    *::selection {
+        background: none;
+    }
+
+    .expansions {
+        border-bottom-left-radius: $card_border_radius;
+        border-bottom-right-radius: $card_border_radius;
+        width: 100%;
+        top: 100%;
+        max-height: 0;
+        position: absolute;
+        overflow: hidden;
+        box-shadow: $card_shadow;
+        top: -15px;
+        filter: brightness(70%);
+
+        .expansion {
+            margin: 20px;
+            filter: blur(1.2px);
+
+            &:hover {
+                .hover-item.show {
+                    opacity: 1;
+                }
             }
 
-            .icon {
-                width: 15px;
-                aspect-ratio: 1;
+            .hover-item {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                padding: 5px 10px;
+                border-radius: $card_border_radius;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 0;
+
+                &.show {
+                    opacity: 1;
+                }
+            }
+
+            .title-container {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+                height: 50%;
+                margin-bottom: 5px;
+
+                .title {
+                    font-weight: normal;
+                    font-size: 15px;
+                    pointer-events: none;
+                }
+
+                .icon {
+                    width: 15px;
+                    aspect-ratio: 1;
+                }
             }
         }
     }
