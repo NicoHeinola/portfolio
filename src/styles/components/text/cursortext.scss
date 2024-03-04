@@ -1,0 +1,38 @@
+.cursor-text {
+    display: flex;
+    flex-direction: row;
+    white-space: pre;
+    width: min-content;
+
+    .cursor {
+        position: absolute;
+        right: -5px;
+        width: 2px;
+        height: 100%;
+        background: black;
+
+        animation-name: blinking;
+        animation-duration: 0.8s;
+        animation-play-state: running;
+        animation-iteration-count: infinite;
+
+        &.hidden {
+            animation-name: initial;
+            display: none;
+        }
+
+        @keyframes blinking {
+            0% {
+                visibility: hidden;
+            }
+
+            50% {
+                visibility: hidden;
+            }
+
+            100% {
+                visibility: visible;
+            }
+        }
+    }
+}
