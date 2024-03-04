@@ -17,7 +17,7 @@ const CursorText = (props) => {
                 let char = sectionTextList[index];
                 setTimeout((char, index, sectionIndex) => {
                     console.log(char, index, sectionIndex)
-                    const newElement = <p className="char" key={"char-" + index + sectionIndex}>{char}</p>;
+                    const newElement = <p style={{ fontSize: props.fontSize + "px" }} className="char" key={"char-" + index + sectionIndex}>{char}</p>;
                     updatedCharacters.push(newElement);
                     setCharacters([...updatedCharacters]);
                 }, duration * 1000, char, index, sectionIndex);
@@ -31,7 +31,7 @@ const CursorText = (props) => {
         setTimeout(() => {
             cursorRef.current.className = "";
         }, (duration + 1) * 1000)
-    }, [props.name]);
+    }, [props.name, props.fontSize]);
 
     return (
         <div className="cursor-text">
