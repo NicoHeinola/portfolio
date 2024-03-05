@@ -1,24 +1,62 @@
+@import "styles/variables.scss";
+
 .cursor-text {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-right: auto;
     white-space: pre;
-    width: min-content;
+    /* Set max width */
+
+    &.big {
+        min-height: 100px;
+
+        .char {
+            font-size: 75px;
+        }
+    }
+
+    &.small {
+        min-height: 50px;
+
+        .char {
+            font-size: 14px;
+        }
+
+        .cursor {
+            width: 8px;
+            height: 16px;
+        }
+    }
+
+    .char {
+        font-family: $main-font-family;
+    }
 
     .cursor {
-        position: absolute;
-        right: -5px;
-        width: 5px;
-        height: 100%;
+        width: 30px;
+        min-height: 100%;
         background: black;
+        display: none;
+
+        /* If writing */
+        &:not(.not-writing) {
+            visibility: visible !important;
+            animation-name: "no-animation";
+        }
+
+        &.not-hidden {
+            display: block !important;
+        }
 
         animation-name: blinking;
-        animation-duration: 0.8s;
+        animation-duration: 0.75s;
         animation-play-state: running;
         animation-iteration-count: infinite;
 
         &.hidden {
             animation-name: initial;
-            display: none;
+            display: none !important;
         }
 
         @keyframes blinking {

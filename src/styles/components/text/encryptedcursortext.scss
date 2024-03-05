@@ -1,0 +1,9 @@
+@import "styles/variables.scss";
+
+.encrypted-cursor-text {
+    * {
+        font-family: $secondary-font-family !important;
+    }
+
+    min-height: initial !important;
+}
