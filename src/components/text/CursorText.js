@@ -6,6 +6,25 @@ const CursorText = (props) => {
     const [cursorClass, setCursorClass] = useState("not-writing");
     const cursorRef = useRef(null);
 
+    const setCharactersAsWords = (characterList) => {
+        let words = [];
+        let currentString = "";
+        for (let char of characterList) {
+            if (char === " ") {
+                words.push(currentString);
+                words.push(" ");
+                currentString = "";
+                continue;
+            }
+
+            currentString += char;
+        }
+
+        words.push(currentString)
+
+        setCharacters(words);
+    }
+
     useEffect(() => {
         setTimeout(() => {
             let cursorClassTimer;
@@ -41,13 +60,12 @@ const CursorText = (props) => {
                     let char = sectionTextList[index];
 
                     // Add the character after a delay
-                    setTimeout((char, index, sectionIndex) => {
-                        const newElement = <p className="char" key={"char-" + index + sectionIndex}>{char}</p>;
-                        updatedCharacters.push(newElement);
-                        setCharacters([...updatedCharacters]);
+                    setTimeout((char) => {
+                        updatedCharacters.push(char);
+                        setCharactersAsWords(updatedCharacters);
                         setCursorClass("not-hidden");
                         refreshCursorClassTimer();
-                    }, duration * 1000, char, index, sectionIndex);
+                    }, duration * 1000, char);
 
                     duration += section.speed;
                 }
@@ -65,7 +83,7 @@ const CursorText = (props) => {
 
     return (
         <div className={"cursor-text " + props.fontSize + " " + props.className}>
-            {characters.map(char => char)}
+            {characters.map((word, index) => <p className="char" key={"char-" + index}>{word}</p>)}
             <div ref={cursorRef} className={"cursor " + cursorClass}></div>
             {props.children}
         </div>

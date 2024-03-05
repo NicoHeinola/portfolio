@@ -7,10 +7,30 @@ const EncryptedCursorText = (props) => {
     const [cursorClass, setCursorClass] = useState("not-writing");
     const cursorRef = useRef(null);
 
+    const setCharactersAsWords = (characterList) => {
+        let words = [];
+        let currentString = "";
+        for (let char of characterList) {
+            if (char === " ") {
+                words.push(currentString);
+                words.push(" ");
+                currentString = "";
+                continue;
+            }
+
+            currentString += char;
+        }
+
+        words.push(currentString)
+
+        setCharacters(words);
+    }
+
+
     useEffect(() => {
         function generateRandomString(length) {
             // Characters tho choose random characters from
-            const characters = '[]*#!%#^¨½§&';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ';
 
             let result = '';
             const charactersLength = characters.length;
@@ -62,8 +82,8 @@ const EncryptedCursorText = (props) => {
                     // Add the character after a delay
                     setTimeout((index, char) => {
                         // Character element
-                        newCharacters.push(generateRandomString(1))
-                        setCharacters([...newCharacters]);
+                        newCharacters.push(char === " " ? char : generateRandomString(1))
+                        setCharactersAsWords(newCharacters)
                         setCursorClass("not-hidden");
                         refreshCursorClassTimer();
                     }, duration * 1000, index, char);
@@ -106,14 +126,16 @@ const EncryptedCursorText = (props) => {
         // Encrypt the characters constantly
         const encryptionInterval = setInterval(() => {
             for (let charIndex = 0; charIndex < newCharacters.length; charIndex++) {
+                let char = newCharacters[charIndex];
+
                 // If character is decrypted
                 if (!encryptedCharacters.includes(charIndex)) {
                     newCharacters[charIndex] = correctCharacters[charIndex];
                 } else {
-                    newCharacters[charIndex] = generateRandomString(1);
+                    newCharacters[charIndex] = (char === " ") ? char : generateRandomString(1);
                 }
             }
-            setCharacters([...newCharacters]);
+            setCharactersAsWords(newCharacters);
 
             if (encryptedCharacters.length === 0 && correctCharacters.length > 0) {
                 clearInterval(encryptionInterval);
