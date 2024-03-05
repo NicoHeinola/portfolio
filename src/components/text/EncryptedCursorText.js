@@ -28,7 +28,7 @@ const EncryptedCursorText = (props) => {
 
 
     useEffect(() => {
-        function generateRandomString(length) {
+        const generateRandomString = (length) => {
             // Characters tho choose random characters from
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ';
 

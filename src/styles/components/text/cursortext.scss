@@ -24,7 +24,7 @@
         }
 
         .cursor {
-            width: 8px;
+            width: 3px;
             height: 16px;
         }
     }
@@ -35,8 +35,9 @@
     }
 
     .cursor {
-        width: 30px;
+        width: 7px;
         min-height: 100%;
+        margin-left: 3px;
         background: black;
         display: none;
 

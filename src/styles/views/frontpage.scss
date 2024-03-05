@@ -3,5 +3,13 @@
 .front-page {
     display: flex;
     flex-direction: column;
-    width: 650px;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    .hi-section {
+        width: 650px;
+        height: 400px;
+        margin-left: 300px;
+    }
 }
