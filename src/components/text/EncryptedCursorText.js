@@ -12,8 +12,7 @@ const EncryptedCursorText = (props) => {
         let currentString = "";
         for (let char of characterList) {
             if (char === " ") {
-                words.push(currentString);
-                words.push(" ");
+                words.push(currentString + " ");
                 currentString = "";
                 continue;
             }
@@ -118,7 +117,7 @@ const EncryptedCursorText = (props) => {
 
                 }, props.decryptionDelaySeconds * 1000);
 
-            }, (duration + 0.5) * 1000);
+            }, (duration - 0.3) * 1000);
 
         }, props.delaySeconds * 1000);
 

@@ -11,8 +11,7 @@ const CursorText = (props) => {
         let currentString = "";
         for (let char of characterList) {
             if (char === " ") {
-                words.push(currentString);
-                words.push(" ");
+                words.push(currentString + " ");
                 currentString = "";
                 continue;
             }

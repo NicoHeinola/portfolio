@@ -3,25 +3,106 @@
 .front-page {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    background: $site-background;
+    padding-left: 50px;
+
+    gap: 70px;
+
+    width: 1150px;
+    max-width: 100%;
     height: 100vh;
+
+    margin: auto;
+
+    .background {
+
+        position: fixed;
+        width: 100vw;
+        height: 100%;
+        left: 0;
+        top: 0;
+
+        background: radial-gradient(circle, $site-background 55%, rgba(0, 0, 0, 0.253));
+
+        opacity: 0;
+
+        animation-name: gradiant-animation;
+        animation-duration: 1s;
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
+
+        @keyframes gradiant-animation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
 
     .hi-section {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
         justify-content: center;
-        width: 1200px;
-        max-width: 60%;
-        height: 70%;
+
+        width: 650px;
+        min-width: 300px;
+        height: 60%;
+        margin-top: 100px;
 
         .about-me {
-            width: 650px;
-            height: 200px;
+            width: 100%;
+            height: 100%;
+            top: 0;
         }
 
         .title {
             margin-bottom: 10px;
+        }
+
+        .social-medias {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            height: 200px;
+
+            .seperator-line {
+                width: 3px;
+                height: 0%;
+                margin: 0 20px;
+                background: $text-color;
+
+                animation-name: resize-from-top-to-bottom;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            .list-of-medias {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+
+                .media {
+                    width: 40px;
+                    aspect-ratio: 1;
+                    animation-name: fade-from-right-to-left;
+                    animation-duration: 0.75s;
+                    animation-fill-mode: forwards;
+                    opacity: 0;
+
+                    .icon {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
         }
     }
 
@@ -29,27 +110,68 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        max-width: 40%;
+        height: 60%;
+
+        opacity: 0;
+
+        animation-name: fade-from-left-to-right;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
 
         .image-container {
-            position: relative;
-            margin: 1em auto;
-            width: 10em;
-            height: 17.32em;
-            border-radius: 1em/.5em;
-            background: orange;
-            transition: opacity .5s;
+            max-width: 100%;
+            width: 400px;
 
-            img {
+            .skewed-image {
+                width: 280px;
+                aspect-ratio: 9/12;
+                transform: skewX(-10deg) skewY(-10deg);
+                overflow: hidden;
+
+                &.hollow-image {
+                    position: absolute;
+                    left: 20px;
+                    top: 20px;
+
+                    .image {
+                        background: rgba(0, 0, 0, 0.116);
+                    }
+                }
+
+                .image {
+                    position: absolute;
+                    width: 150%;
+                    height: 150%;
+                    left: 75%;
+                    top: 75%;
+                    object-fit: cover;
+                    background: rgb(105, 104, 96);
+
+                    transform: skewX(10deg) skewY(10deg) translate(-50%, -50%);
+                }
+            }
+        }
+
+        .separator-line {
+            width: 75%;
+            height: 5px;
+            border-radius: 50px;
+            margin-top: 20px;
+            background: $text-color;
+        }
+
+        .media-link-icon {
+            width: 40px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+
+            .icon {
                 width: 100%;
-                height: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                border-radius: 20px;
-                /* Adjusted border-radius for slightly rounded image corners */
+                height: 100%;
+                object-fit: contain;
             }
         }
     }
+
 }

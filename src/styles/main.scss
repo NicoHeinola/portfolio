@@ -7,7 +7,6 @@ body {
     background: $site-background;
 }
 
-
 * {
     position: relative;
     color: $text-color;
@@ -30,4 +29,50 @@ a {
 p {
     font-family: $secondary-font-family;
     font-size: 14px;
+}
+
+@keyframes fade-from-right-to-left {
+    0% {
+        right: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-from-left-to-right {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-from-top-to-bottom {
+    0% {
+        top: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes resize-from-top-to-bottom {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
 }
