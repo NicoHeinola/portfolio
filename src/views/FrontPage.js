@@ -2,8 +2,8 @@ import CursorText from "components/text/CursorText";
 import EncryptedCursorText from "components/text/EncryptedCursorText";
 import "styles/views/frontpage.scss"
 
-function FrontPage() {// FIX THIS CHROME CHEKC
-    const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+function FrontPage() {
+    const isFirefox = typeof InstallTrigger !== 'undefined';
 
     let description = "I'm a passionate programmer with motivation to constantly learn something new. I specialize in web development but I'm also proficient at making desktop applications and games.";
     return (
@@ -25,8 +25,8 @@ function FrontPage() {// FIX THIS CHROME CHEKC
                     <div className="seperator-line" style={{ animationDelay: "0.3s" }}></div>
                 </div>
                 <div className="about-me">
-                    <CursorText className="title" fontSize="big" delaySeconds={isChrome ? 0.5 : 0.1} name={[{ text: "", waitSeconds: 0.50, speed: 0 }, { text: "Hi,", waitSeconds: 0.30, speed: 0.1 }, { text: " I'm Nico!", waitSeconds: 0, speed: 0.035 }]}></CursorText>
-                    <EncryptedCursorText decryptionCount={7} delaySeconds={.1} decryptionDelaySeconds={0.03} encryptionDelaySeconds={0.05} fontSize="small" name={[{ text: "", waitSeconds: 1.8, speed: 0 }, { text: description, waitSeconds: 0, speed: 0.006 }]}>
+                    <CursorText className="title" fontSize="big" delaySeconds={isFirefox ? 0.1 : 0.5} name={[{ text: "", waitSeconds: 0.50, speed: 0 }, { text: "Hi,", waitSeconds: 0.30, speed: 0.1 }, { text: " I'm Nico!", waitSeconds: 0, speed: 0.035 }]}></CursorText>
+                    <EncryptedCursorText decryptionCount={7} delaySeconds={isFirefox ? 0.1 : 0.5} decryptionDelaySeconds={0.03} encryptionDelaySeconds={0.05} fontSize="small" name={[{ text: "", waitSeconds: 1.8, speed: 0 }, { text: description, waitSeconds: 0, speed: 0.006 }]}>
                     </EncryptedCursorText>
                 </div>
             </div>

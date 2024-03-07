@@ -82,7 +82,7 @@ const CursorText = (props) => {
 
     return (
         <div className={"cursor-text " + props.fontSize + " " + props.className}>
-            {characters.map((word, index) => <p className="char" key={"char-" + index}>{word}</p>)}
+            {characters.map((word, index) => <pre className="char" key={"char-" + index}>{word}</pre>)}
             <div ref={cursorRef} className={"cursor " + cursorClass}></div>
             {props.children}
         </div>
