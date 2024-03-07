@@ -15,9 +15,7 @@ const Navigation = () => {
         const scrollPosition = window.scrollY;
 
         // Adjust these values as needed based on your sections' positions
-        const sectionOffsets = {
-
-        }
+        const sectionOffsets = {}
 
         // Form the section offset array
         for (let index in links) {
