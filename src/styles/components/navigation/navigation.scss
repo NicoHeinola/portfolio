@@ -1,0 +1,53 @@
+@import "../../variables.scss";
+
+.navigation {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+
+    border-radius: 50px;
+    z-index: 100;
+
+    background: rgba(0, 0, 0, 0.103);
+    backdrop-filter: blur(20px);
+
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 20px;
+
+    .selection {
+        position: absolute;
+        background: $button-color-2-1;
+        height: 5px;
+        bottom: 5px;
+        border-radius: 50px;
+        transition: all 0.2s;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 24px;
+        margin: auto;
+
+        .link {
+            text-align: center;
+            border-radius: 50px;
+
+            transition: all 0.2s;
+            cursor: pointer;
+
+            color: $text-color;
+
+            font-family: $main-font-family;
+            font-weight: 500;
+
+            &:hover {
+                scale: 1.05;
+            }
+        }
+    }
+}

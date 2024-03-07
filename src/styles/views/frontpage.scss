@@ -11,7 +11,7 @@
 
     gap: 70px;
 
-    width: 1200px;
+    width: 1350px;
     max-width: 100%;
     height: 100vh;
 
@@ -25,10 +25,10 @@
         left: 0;
         top: 0;
 
+        background: $site-background-gradient;
 
-        opacity: 0;
+        opacity: 1;
 
-        animation-name: gradiant-animation;
         animation-duration: 1s;
         animation-delay: 0.3s;
         animation-fill-mode: forwards;
@@ -49,15 +49,35 @@
         flex-direction: row;
         justify-content: center;
 
-        width: 650px;
+        width: 710px;
         min-width: 300px;
         height: 70%;
         margin-top: 170px;
 
-        .about-me {
+        .about-me-container {
+            display: flex;
+            flex-direction: column;
             width: 100%;
-            height: 100%;
-            top: 0;
+
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                >* {
+                    opacity: 0;
+
+                    animation-name: fade-from-left-to-right;
+                    animation-fill-mode: forwards;
+                    animation-duration: 0.5s;
+                }
+            }
+
+            .about-me {
+                width: 100%;
+                min-height: 330px;
+                top: 0;
+            }
         }
 
         .title {
@@ -68,7 +88,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            height: 200px;
+            height: 320px;
 
             .seperator-line {
                 width: 3px;
@@ -119,13 +139,14 @@
 
         .image-container {
             max-width: 100%;
-            width: 400px;
+            width: 500px;
 
             .skewed-image {
-                width: 280px;
+                width: 380px;
                 aspect-ratio: 9/12;
-                transform: skewX(-10deg) skewY(-10deg);
+                transform: skewX(-6deg) skewY(-6deg);
                 overflow: hidden;
+                border-radius: 5px;
 
                 &.hollow-image {
                     position: absolute;
@@ -146,7 +167,7 @@
                     object-fit: cover;
                     background: rgb(105, 104, 96);
 
-                    transform: skewX(10deg) skewY(10deg) translate(-50%, -50%);
+                    transform: skewX(6deg) skewY(6deg) translate(-50%, -50%);
                 }
             }
         }

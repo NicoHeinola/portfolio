@@ -1,0 +1,35 @@
+@import "styles/variables.scss";
+
+.hollow-button {
+    width: 200px;
+    height: 45px;
+    border: 1px solid black;
+
+    border-radius: 2.5px;
+    font-family: $secondary-font-family;
+    font-size: 15px;
+
+    background: linear-gradient(to right, #ff634700 0%, #ff634700 50%, $button-color-1-1 50%, $button-color-1-1 100%);
+    background-size: 200% 100%;
+
+    &.secondary {
+        background: linear-gradient(to right, #ff634700 0%, #ff634700 50%, $button-color-2-1 50%, $button-color-2-1 100%);
+        background-size: 200% 100%;
+
+    }
+
+    transition: all;
+    transition-duration: 0;
+
+    cursor: pointer;
+
+    &.hover {
+        background-position: -100%;
+        transition-duration: 0.4s !important;
+    }
+
+    &.no-hover {
+        background-position: -200%;
+        transition-duration: 0.4s !important;
+    }
+}

@@ -8,14 +8,28 @@
     margin-right: auto;
 
     &.big {
-        min-height: 100px;
+        min-height: 135px;
 
         .char {
-            font-size: 75px;
+            font-size: 115px;
         }
 
         .cursor {
-            height: 82px;
+            height: 125px;
+        }
+    }
+
+    &.semi-big {
+        min-height: 75px;
+        opacity: 0.6;
+
+        .char {
+            font-size: 55px;
+        }
+
+        .cursor {
+            width: 5px;
+            height: 60px;
         }
     }
 

@@ -13,6 +13,7 @@ body {
     font-family: $main-font-family;
     margin: 0;
     padding: 0;
+    outline: none;
 }
 
 p,
@@ -24,6 +25,7 @@ h5,
 h6,
 a {
     margin: 0;
+    text-decoration: none;
 }
 
 p {
