@@ -6,11 +6,12 @@ const Navigation = () => {
     const selectionRef = useRef(null);
 
     let links = [
-        { text: "Home", href: "#", id: "home-link" },
-        { text: "Work Experience", href: "#", id: "work-experience-link" },
-        { text: "My Projects", href: "#", id: "my-projects-link" },
+        { text: "Home", href: "#", sectionId: "front-page", id: "home-link" },
+        { text: "Work Experience", href: "#", sectionId: "missing-1", id: "work-experience-link" },
+        { text: "My Projects", href: "#", sectionId: "missing-2", id: "my-projects-link" },
     ]
 
+    // Called on page scroll
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
 
@@ -21,12 +22,12 @@ const Navigation = () => {
         for (let index in links) {
             let link = links[index];
 
-            if (index == 0) {
-                sectionOffsets[link.id] = 0;
+            if (index === 0) {
+                sectionOffsets[link.sectionId] = 0;
                 continue;
             }
 
-            sectionOffsets[link.id] = document.getElementById(link.id).offsetTop;
+            sectionOffsets[link.sectionId] = document.getElementById(link.sectionId).offsetTop;
         }
 
         let active = '';
@@ -51,7 +52,7 @@ const Navigation = () => {
         return sectionRect;
     }
 
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = (sectionId, clicked) => {
         const sectionRect = getSectionBoundingRect(sectionId);
         if (!sectionRect) {
             return;
@@ -72,16 +73,22 @@ const Navigation = () => {
 
         setActiveSection(sectionId)
         onSectionUnHover()
+
+        if (clicked) {
+            selectionRef.current.style.scale = `${1.1}`;
+            return;
+        }
     };
 
     const onSectionHover = (sectionId) => {
-        // Let's not add any movement if user is hovering currently selected nav item
-        if (sectionId === activeSection) {
+        const sectionRect = getSectionBoundingRect(sectionId);
+        if (!sectionRect) {
             return;
         }
 
-        const sectionRect = getSectionBoundingRect(sectionId);
-        if (!sectionRect) {
+        // Let's expand to both directions if hovering current one
+        if (sectionId === activeSection) {
+            selectionRef.current.style.scale = `${1.1}`;
             return;
         }
 
@@ -93,6 +100,8 @@ const Navigation = () => {
     }
 
     const onSectionUnHover = () => {
+        selectionRef.current.style.scale = `${1}`;
+        selectionRef.current.style.paddingLeft = `0px`;
         selectionRef.current.style.marginLeft = `0px`;
     }
 
@@ -108,9 +117,11 @@ const Navigation = () => {
 
     return (
         <nav className="navigation">
-            <div className="links">
-                <div ref={selectionRef} className="selection" id="nav-selection"></div>
-                {links.map((link, index) => <a className="link" id={link.id} onMouseLeave={onSectionUnHover} onMouseEnter={() => onSectionHover(link.id)} onClick={() => scrollToSection(link.id)} href={link.href} key={`link-${index}`}>{link.text}</a>)}
+            <div className="container">
+                <div className="links">
+                    <div ref={selectionRef} className="selection" id="nav-selection"></div>
+                    {links.map((link, index) => <a className="link" id={link.id} style={{ animationDelay: (4.4 + 0.2 * index) + "s" }} onMouseLeave={onSectionUnHover} onMouseEnter={() => onSectionHover(link.id)} onClick={() => scrollToSection(link.id, true)} href={link.href} key={`link-${index}`}>{link.text}</a>)}
+                </div>
             </div>
         </nav>
     )

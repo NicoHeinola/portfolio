@@ -1,4 +1,5 @@
 import HollowButton from "components/input/HollowButton";
+import ParticleCanvas from "components/particles/ParticleCanvas";
 import CursorText from "components/text/CursorText";
 import EncryptedCursorText from "components/text/EncryptedCursorText";
 import "styles/views/frontpage.scss"
@@ -10,6 +11,7 @@ function FrontPage() {
 
     return (
         <div className="front-page">
+            <ParticleCanvas className="particles" startDelay={8}></ParticleCanvas>
             <div className="background"></div>
             <div className="hi-section">
                 <div className="social-medias">

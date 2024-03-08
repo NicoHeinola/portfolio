@@ -1,52 +1,152 @@
 @import "../../variables.scss";
 
 .navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     position: absolute;
+
     width: 400px;
     height: 50px;
 
     border-radius: 50px;
     z-index: 100;
 
-    background: rgba(0, 0, 0, 0.103);
-    backdrop-filter: blur(20px);
 
     left: 50%;
     transform: translateX(-50%);
     margin-top: 20px;
 
-    .selection {
-        position: absolute;
-        background: $button-color-2-1;
-        height: 5px;
-        bottom: 5px;
-        border-radius: 50px;
-        transition: all 0.2s;
+    /* when minimized and not hovering*/
+    &.minimized:not(:hover) {
+
+        .container {
+            width: 170px;
+            height: 10px;
+            overflow: hidden;
+            opacity: 0.8;
+
+            .links {
+                opacity: 0;
+                transition-delay: 0s;
+                transition-duration: 0.1s;
+            }
+        }
     }
 
-    .links {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        padding: 0 24px;
-        margin: auto;
+    &.minimized {
+        .container {
+            animation-name: initial;
+            opacity: 1;
 
-        .link {
-            text-align: center;
+            .selection {
+                animation-name: initial;
+                opacity: 1;
+            }
+
+            .links {
+                animation-name: initial;
+                opacity: 1;
+
+                .link {
+                    animation-name: initial;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        transition: all 0.2s;
+        background: rgba(0, 0, 0, 0.103);
+        border-radius: 50px;
+        border: 1px solid black;
+        opacity: 0;
+        backdrop-filter: blur(10px);
+
+        animation-name: load-animation;
+        animation-duration: 0.8s;
+        animation-delay: 3.7s;
+        animation-fill-mode: forwards;
+
+        @keyframes load-animation {
+            0% {
+                width: 0px;
+                height: 10px;
+                opacity: 0;
+            }
+
+            50% {
+                width: 170px;
+                height: 10px;
+                opacity: 1;
+            }
+
+            55% {
+                width: 170px;
+                height: 10px;
+                opacity: 1;
+            }
+
+
+            100% {
+                width: 400px;
+                height: 50px;
+                opacity: 1;
+            }
+        }
+
+        .selection {
+            position: absolute;
+            background: $button-color-2-1;
+            height: 5px;
+            bottom: 5px;
             border-radius: 50px;
+            transition: all 0.2s;
+
+            opacity: 0;
+            animation-name: fade-in;
+            animation-fill-mode: forwards;
+            animation-duration: 0.5s;
+            animation-delay: 4.4s;
+            padding-left: 10px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 24px;
+            margin: auto;
 
             transition: all 0.2s;
-            cursor: pointer;
+            transition-delay: 0.1s;
 
-            color: $text-color;
+            .link {
+                text-align: center;
+                border-radius: 50px;
 
-            font-family: $main-font-family;
-            font-weight: 500;
+                transition: all 0.2s;
+                cursor: pointer;
 
-            &:hover {
-                scale: 1.05;
+                color: $text-color;
+
+                font-family: $main-font-family;
+                font-weight: 500;
+
+                opacity: 0;
+                animation-name: fade-from-top-to-bottom;
+                animation-fill-mode: forwards;
+                animation-duration: 0.4s;
+
+                &:hover {
+                    scale: 1.05;
+                }
             }
         }
     }
