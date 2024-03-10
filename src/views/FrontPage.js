@@ -36,18 +36,17 @@ function FrontPage() {
                         </EncryptedCursorText>
                     </div>
                     <div className="buttons">
-                        <HollowButton style={{ animationDelay: "3.5s" }}>My Projects</HollowButton>
-                        <HollowButton className="secondary" style={{ animationDelay: "3.7s" }}>Work Experience</HollowButton>
+                        <a href="#project-page"><HollowButton style={{ animationDelay: "3.5s" }}>My Projects</HollowButton></a>
                     </div>
                 </div>
             </div>
             <div className="image-section" style={{ animationDelay: "3.1s" }}>
                 <div className='image-container'>
                     <div className="skewed-image hollow-image">
-                        <div className="image" src="images/me.jpg"></div>
+                        <div className="image"></div>
                     </div>
                     <div className="skewed-image">
-                        <img alt="" draggable="false" className="image" src="images/me.jpg" />
+                        <img alt="" draggable="false" className="image main-image" src="images/me.jpg" />
                     </div>
                 </div>
             </div>

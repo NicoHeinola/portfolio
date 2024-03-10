@@ -7,12 +7,12 @@ const Navigation = () => {
 
     let links = [
         { text: "Home", href: "#", sectionId: "front-page", id: "home-link" },
-        { text: "Work Experience", href: "#", sectionId: "missing-1", id: "work-experience-link" },
-        { text: "My Projects", href: "#", sectionId: "missing-2", id: "my-projects-link" },
+        { text: "My Projects", href: "#project-page", sectionId: "project-page", id: "my-projects-link" },
     ]
 
     // Called on page scroll
     const handleScroll = () => {
+        return;
         const scrollPosition = window.scrollY;
 
         // Adjust these values as needed based on your sections' positions
@@ -43,7 +43,7 @@ const Navigation = () => {
             }
         });
 
-        setActiveSection(active);
+        // setActiveSection(active);
         onSectionUnHover();
     };
 
@@ -59,6 +59,10 @@ const Navigation = () => {
     }
 
     const scrollToSection = (sectionId, clicked) => {
+        if (sectionId === activeSection) {
+            return;
+        }
+
         const sectionRect = getSectionBoundingRect(sectionId);
         if (!sectionRect) {
             return;

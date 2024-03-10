@@ -62,7 +62,7 @@ class Particle {
         this.y = randomPosition.y
 
         this.speedX = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
-        this.speedY = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
+        this.speedY = -Math.abs(Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed));
 
         this.alpha = 0;
 
@@ -202,7 +202,7 @@ const ParticleCanvas = (props) => {
 
         let particles = [];
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 3; i++) {
             let particle = new SquareParticle(offscreenCanvas);
             particle.resetCallback();
             particles.push(particle)

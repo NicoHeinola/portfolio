@@ -14,6 +14,7 @@ body {
     margin: 0;
     padding: 0;
     outline: none;
+    scroll-behavior: smooth;
 }
 
 p,
@@ -31,6 +32,14 @@ a {
 p {
     font-family: $secondary-font-family;
     font-size: 14px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 30px;
 }
 
 @keyframes fade-from-right-to-left {

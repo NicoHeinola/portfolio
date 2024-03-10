@@ -1,8 +1,10 @@
 $main-font-family: "Overpass";
 $secondary-font-family: 'Courier New', Courier, monospace;
-$site-background: rgb(230, 237, 255);
-$site-background-gradient: linear-gradient(180deg, rgb(253, 255, 230) 0%, rgb(241, 226, 214) 100%);
+$site-background: rgb(241, 226, 214);
+$site-background-gradient: linear-gradient(180deg, rgb(253, 255, 230) 0%, $site-background 100%);
 $text-color: rgb(41, 37, 37);
 
 $button-color-1-1: rgb(172, 217, 223);
 $button-color-2-1: rgb(145, 165, 231);
+
+$card-color: rgb(145, 165, 231);
