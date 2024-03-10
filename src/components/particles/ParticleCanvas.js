@@ -8,16 +8,16 @@ class Particle {
 
         this.maxSpeed = 0.5;
         this.minSpeed = -0.5;
-        this.maxOpacity = 0.4;
+        this.maxOpacity = 0.3;
 
-        this.maxLifeSpan = 10000;
-        this.minLifeSpan = 4000;
+        this.maxLifeSpan = 20000;
+        this.minLifeSpan = 6000;
 
-        this.maxFadeInDuration = 2000;
-        this.minFadeInDuration = 500;
+        this.maxFadeInDuration = 5000;
+        this.minFadeInDuration = 3000;
 
-        this.maxFadeOutDuration = 2000;
-        this.minFadeOutDuration = 500;
+        this.maxFadeOutDuration = 5000;
+        this.minFadeOutDuration = 3000;
     }
 
     getCanvasRect() {
@@ -57,15 +57,14 @@ class Particle {
 
 
     resetCallback() {
-        let canvasRect = this.getCanvasRect();
-        let randomPosition = this.randomPositionNearEdges(canvasRect.width, canvasRect.height, 200);
+        let randomPosition = this.randomPositionNearEdges(this.canvasElement.width, this.canvasElement.height, 100);
         this.x = randomPosition.x
         this.y = randomPosition.y
 
         this.speedX = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
         this.speedY = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
 
-        this.alpha = this.maxOpacity;
+        this.alpha = 0;
 
         // Randomize fade outs
         this.lifeSpan = Math.max(this.minLifeSpan, Math.random() * this.maxLifeSpan);
@@ -110,8 +109,8 @@ class SquareParticle extends Particle {
     constructor(canvasElement) {
         super(canvasElement);
 
-        this.minWidth = 50;
-        this.maxWidth = 90;
+        this.minWidth = 40;
+        this.maxWidth = 60;
 
         this.minHeight = this.minWidth;
         this.maxHeight = this.maxWidth;
@@ -139,8 +138,8 @@ class CircleParticle extends Particle {
     constructor(canvasElement) {
         super(canvasElement);
 
-        this.minRadius = 30;
-        this.maxRadius = 60;
+        this.minRadius = 25;
+        this.maxRadius = 50;
     }
 
     resetCallback() {
@@ -203,7 +202,7 @@ const ParticleCanvas = (props) => {
 
         let particles = [];
 
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < 2; i++) {
             let particle = new SquareParticle(offscreenCanvas);
             particle.resetCallback();
             particles.push(particle)
@@ -223,7 +222,11 @@ const ParticleCanvas = (props) => {
             canvasRef.current.height = window.innerHeight;
             offscreenCanvas.width = window.innerWidth;
             offscreenCanvas.height = window.innerHeight;
-            particleDrawLoop()
+            canvasRect = canvasRef.current.getBoundingClientRect();
+
+            for (let particle of particles) {
+                particle.resetCallback();
+            }
         }
 
         const particleUpdateLoop = () => {
@@ -244,20 +247,19 @@ const ParticleCanvas = (props) => {
             }
 
             ctx.clearRect(0, 0, canvasRect.width, canvasRect.height);
-            ctx.drawImage(offscreenCanvas, 0, 0)
+            ctx.drawImage(offscreenCanvas, 0, 0);
+
+            requestAnimationFrame(particleDrawLoop);
         }
 
-        setTimeout(() =>
+
+        setTimeout(() => {
             setInterval(() => {
                 particleUpdateLoop();
             }, 1000 / 20)
-            , props.startDelay)
 
-        setTimeout(() =>
-            setInterval(() => {
-                particleDrawLoop();
-            }, 1000 / 20)
-            , props.startDelay)
+            requestAnimationFrame(particleDrawLoop);
+        }, props.startDelaySeconds * 1000)
 
         // resize the canvas to fill browser window dynamically
         window.addEventListener('resize', resizeCanvas, false);

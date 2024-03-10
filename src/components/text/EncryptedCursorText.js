@@ -29,7 +29,7 @@ const EncryptedCursorText = (props) => {
     useEffect(() => {
         const generateRandomString = (length) => {
             // Characters tho choose random characters from
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
             let result = '';
             const charactersLength = characters.length;
@@ -80,6 +80,9 @@ const EncryptedCursorText = (props) => {
 
                     // Add the character after a delay
                     setTimeout((index, char) => {
+                        // Randomize each character
+                        scrambleCharacters();
+
                         // Character element
                         newCharacters.push(char === " " ? char : generateRandomString(1))
                         setCharactersAsWords(newCharacters)
@@ -115,6 +118,9 @@ const EncryptedCursorText = (props) => {
                         decryptText();
                     }
 
+                    scrambleCharacters();
+                    setCharactersAsWords(newCharacters);
+
                 }, props.decryptionDelaySeconds * 1000);
 
             }, (duration - 0.3) * 1000);
@@ -122,8 +128,7 @@ const EncryptedCursorText = (props) => {
         }, props.delaySeconds * 1000);
 
 
-        // Encrypt the characters constantly
-        const encryptionInterval = setInterval(() => {
+        const scrambleCharacters = () => {
             for (let charIndex = 0; charIndex < newCharacters.length; charIndex++) {
                 let char = newCharacters[charIndex];
 
@@ -134,12 +139,7 @@ const EncryptedCursorText = (props) => {
                     newCharacters[charIndex] = (char === " ") ? char : generateRandomString(1);
                 }
             }
-            setCharactersAsWords(newCharacters);
-
-            if (encryptedCharacters.length === 0 && correctCharacters.length > 0) {
-                clearInterval(encryptionInterval);
-            }
-        }, props.encryptionDelaySeconds * 1000);
+        }
     }, [props.decryptionCount, props.decryptionDelaySeconds, props.delaySeconds, props.encryptionDelaySeconds, props.name]);
 
     return (

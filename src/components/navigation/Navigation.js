@@ -27,7 +27,13 @@ const Navigation = () => {
                 continue;
             }
 
-            sectionOffsets[link.sectionId] = document.getElementById(link.sectionId).offsetTop;
+            let section = document.getElementById(link.sectionId);
+
+            if (!section) {
+                continue;
+            }
+
+            sectionOffsets[link.sectionId] = section.offsetTop;
         }
 
         let active = '';
