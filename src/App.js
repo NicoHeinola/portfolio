@@ -1,3 +1,4 @@
+import ExperiencePage from 'views/ExperiencePage';
 import './styles/main.scss';
 import FrontPage from './views/FrontPage';
 import Navigation from 'components/navigation/Navigation';
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Navigation></Navigation>
       <FrontPage></FrontPage>
+      <ExperiencePage></ExperiencePage>
       <ProjectPage></ProjectPage>
     </div>
   );

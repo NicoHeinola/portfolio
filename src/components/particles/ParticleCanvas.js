@@ -40,7 +40,7 @@ class Particle {
                 break;
             case 2: // Bottom edge
                 randomX = Math.random() * rectWidth;
-                randomY = rectHeight - (Math.random() * edgeDistance);
+                randomY = rectHeight - (Math.random() * edgeDistance) - 100;
                 break;
             case 3: // Left edge
                 randomX = Math.random() * edgeDistance;

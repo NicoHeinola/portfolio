@@ -12,7 +12,6 @@ const Navigation = () => {
 
     // Called on page scroll
     const handleScroll = () => {
-        return;
         const scrollPosition = window.scrollY;
 
         // Adjust these values as needed based on your sections' positions
@@ -58,7 +57,7 @@ const Navigation = () => {
         return sectionRect;
     }
 
-    const scrollToSection = (sectionId, clicked) => {
+    const scrollToSection = (sectionId, clicked, doScroll) => {
         if (sectionId === activeSection) {
             return;
         }
@@ -76,10 +75,12 @@ const Navigation = () => {
         selectionRef.current.style.left = `${positionX}px`;
         selectionRef.current.style.width = `${sectionRect.width + 2}px`;
 
-        window.scrollTo({
-            top: section.offsetTop,
-            behavior: 'smooth',
-        });
+        if (doScroll) {
+            window.scrollTo({
+                top: section.offsetTop,
+                behavior: 'smooth',
+            });
+        }
 
         setActiveSection(sectionId)
         onSectionUnHover()
@@ -117,7 +118,8 @@ const Navigation = () => {
 
     // Add scroll event listener
     useEffect(() => {
-        scrollToSection(links[0].id)
+        setTimeout(() => scrollToSection(links[0].id, false, false), 200)
+
 
         window.addEventListener('scroll', handleScroll);
         return () => {
