@@ -10,7 +10,7 @@ function FrontPage() {
     let description = "Programming is more than just a job for me; it's my passion. Specializing in web development, I've also dedicated my free time to making desktop applications and games. Continuously seeking ways to enhance my skills, programming is both my career and a fulfilling hobby.";
 
     return (
-        <div className="front-page">
+        <div className="front-page" id="front-page">
             <ParticleCanvas className="particles" startDelaySeconds={5}></ParticleCanvas>
             <div className="background"></div>
             <div className="hi-section">

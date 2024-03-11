@@ -126,16 +126,18 @@ const ProjectPage = () => {
                     <div key={'project' + index} className="project">
                         <div className="image-container">
                             <img src={project.images[0]} className="image" />
-                            <div className="links">
-                                {project.links.map((link, linkIndex) =>
-                                    <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">
-                                        <img className="image" src={link.image} />
-                                    </a>
-                                )}
-                            </div>
                         </div>
                         <div className="content">
-                            <h3 className="title">{project.title}</h3>
+                            <div className="title-row">
+                                <h3 className="title">{project.title}</h3>
+                                <div className="links">
+                                    {project.links.map((link, linkIndex) =>
+                                        <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">
+                                            <img className="image" src={link.image} />
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
                             <p className="description">{project.description}</p>
                             <div className="code-languages">
                                 {project["code-languages"].map((language, langIndex) =>
