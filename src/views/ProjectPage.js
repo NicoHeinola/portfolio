@@ -63,106 +63,80 @@ const ProjectPage = () => {
             "images": ["images/projects/local_show_browser.png"],
             "description": "A Netflix-like website that allows you to stream your own movies and shows to you and other people. Currently has: Login, Register, VLC Media Player supported video playing, Admin control system for various features such as site settings and shows. Coming soon: UI revamp, HLS-streaming videos directly on the website.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }, { "language": "Python", "image": "images/languages/python.png" }, { "language": "Python-flask", "image": "" }, { "language": "SQLite", "image": "" }],
-            "link": "https://github.com/NicoHeinola/LocalShowBrowser_frontend",
+            "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page" }],
         },
         {
             "title": "Lethal Company Mod Manager",
             "images": ["images/projects/lethal_company_mod_manager.png"],
             "description": "a Tool that allows users to install and manage mods in a game called \"Lethal Company\". This is still a very ongoing project.",
             "code-languages": [{ "language": "C++", "image": "images/languages/c_plus_plus.png" }, { "language": "Qt6 (QML)", "image": "images/languages/qt.png" }],
-            "link": "",
+            "links": [],
         },
     ]
 
     return (
         <div className="project-page" id="project-page">
+            <div className="logos">
+                <div className="logo-list">
+                    <div className="logo">
+                        <img className="image" src="images/languages/vuejs.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/react.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/js.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/php.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/laravel.svg" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/css.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/sass.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/python.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/c_plus_plus.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/c_sharp.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/qt.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/electron.png" />
+                    </div>
+                    <div className="logo">
+                        <img className="image" src="images/languages/unity.png" />
+                    </div>
+                </div>
+            </div>
+
             <h1 className="title">Ongoing Projects</h1>
             <div className="projects">
                 {ongoingProjects.map((project, index) =>
                     <div key={'project' + index} className="project">
-                        <div className="bg"></div>
                         <div className="image-container">
-                            <img className="image bg-image" src={project.images[0]} />
-                            <img className="image" src={project.images[0]} />
-                            <div className="language-container">
-                                {project["code-languages"].map((language, langIndex) => {
-                                    if (!language.image) {
-                                        return;
-                                    }
-
-                                    return <div className="language" key={"lang" + langIndex}>
-                                        <img className="image" alt="" src={language.image}></img>
-                                    </div>
-                                }
+                            <img src={project.images[0]} className="image" />
+                        </div>
+                        <div className="content">
+                            <h3 className="title">{project.title}</h3>
+                            <p className="description">{project.description}</p>
+                            <div className="links">
+                                {project.links.map((link, linkIndex) =>
+                                    <a className="link" key={'projlink' + linkIndex} href={link.href}>
+                                        <HollowButton>{link.text}</HollowButton>
+                                    </a>
                                 )}
                             </div>
-                        </div>
-                        <div className="title-container">
-                            <h2 className="title">{project.title}</h2>
-                        </div>
-                        <div className="info-container">
-                            <p className="description">
-                                {project.description}
-                            </p>
-                            <br></br>
-                            <p className="languages"><b>Code Langauges:</b> {project["code-languages"].map((language, langIndex) => {
-                                let seperator = langIndex === project["code-languages"].length - 1 ? "" : ", ";
-                                return <span className="language" key={"lang2" + langIndex}>{language.language}{seperator}</span>
-                            }
-                            )}
-                            </p>
-                            {
-                                project.link ? <a className="github-button" href={project.link} target="_blank"><HollowButton>Github-page</HollowButton></a> : ""
-                            }
-                            {
-                                project["website-link"] ? <a className="github-button" href={project["website-link"]} target="_blank"><HollowButton>Go to website</HollowButton></a> : ""
-                            }
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            <h1 className="title">My Projects</h1>
-            <div className="projects">
-                {projects.map((project, index) =>
-                    <div key={'project' + index} className="project">
-                        <div className="bg"></div>
-                        <div className="image-container">
-                            <img className="image bg-image" src={project.images[0]} />
-                            <img className="image" src={project.images[0]} />
-                            <div className="language-container">
-                                {project["code-languages"].map((language, langIndex) => {
-                                    if (!language.image) {
-                                        return;
-                                    }
-
-                                    return <div className="language" key={"lang" + langIndex}>
-                                        <img className="image" alt="" src={language.image}></img>
-                                    </div>
-                                }
-                                )}
-                            </div>
-                        </div>
-                        <div className="title-container">
-                            <h2 className="title">{project.title}</h2>
-                        </div>
-                        <div className="info-container">
-                            <p className="description">
-                                {project.description}
-                            </p>
-                            <br></br>
-                            <p className="languages"><b>Code Langauges:</b> {project["code-languages"].map((language, langIndex) => {
-                                let seperator = langIndex === project["code-languages"].length - 1 ? "" : ", ";
-                                return <span className="language" key={"lang2" + langIndex}>{language.language}{seperator}</span>
-                            }
-                            )}
-                            </p>
-                            {
-                                project.link ? <a className="github-button" href={project.link} target="_blank"><HollowButton>Github-page</HollowButton></a> : ""
-                            }
-                            {
-                                project["website-link"] ? <a className="github-button" href={project["website-link"]} target="_blank"><HollowButton>Go to website</HollowButton></a> : ""
-                            }
                         </div>
                     </div>
                 )}
