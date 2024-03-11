@@ -7,6 +7,7 @@ const Navigation = () => {
 
     let links = [
         { text: "Home", href: "#", sectionId: "front-page", id: "home-link" },
+        { text: "Experience", href: "#experience-page", sectionId: "experience-page", id: "experience-link" },
         { text: "My Projects", href: "#project-page", sectionId: "project-page", id: "my-projects-link" },
     ]
 

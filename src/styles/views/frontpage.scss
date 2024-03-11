@@ -8,12 +8,12 @@
     align-items: center;
     justify-content: space-between;
     background: $site-background;
-    padding-left: 50px;
+    padding: 0 50px;
 
     gap: 70px;
 
     width: 1350px;
-    max-width: 100%;
+    max-width: calc(100% - 100px);
     height: 100vh;
 
     margin: auto;

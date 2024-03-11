@@ -2,8 +2,8 @@
 
 .experience-page {
     width: 100vw;
-    height: 100vh;
-    background: rgb(245, 229, 222);
+    min-height: 100vh;
+    background: $site-background-gradient-2;
     padding-bottom: 50px;
 
     .logos {
@@ -59,12 +59,14 @@
 
         margin: auto;
         width: 1200px;
+        max-width: 100%;
         padding: 100px 0;
         gap: 50px;
 
         .experience {
             width: 500px;
-            background: rgba(255, 255, 255, 0.212);
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.822);
             border-radius: 10px;
             padding: 20px;
 
@@ -87,8 +89,21 @@
 
             .description-list {
                 margin-top: 20px;
-                width: calc(100% - 20px);
-                padding-left: 20px;
+                width: calc(100% - 25px);
+                padding-left: 25px;
+                list-style: none;
+
+                & li:before {
+                    content: '';
+                    position: absolute;
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                    width: 10px;
+                    height: 10px;
+                    top: calc(50% - 2px);
+                    left: -25px;
+                    transform: translateY(-50%) rotate(-45deg);
+                }
 
                 .description {
                     margin: 10px 0;

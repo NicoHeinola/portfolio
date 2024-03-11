@@ -37,6 +37,7 @@ function FrontPage() {
                     </div>
                     <div className="buttons">
                         <a href="#project-page"><HollowButton style={{ animationDelay: "3.5s" }}>My Projects</HollowButton></a>
+                        <a href="#experience-page"><HollowButton className="secondary" style={{ animationDelay: "3.5s" }}>Experience</HollowButton></a>
                     </div>
                 </div>
             </div>

@@ -59,11 +59,11 @@ const ProjectPage = () => {
 
     let ongoingProjects = [
         {
-            "title": "Local Movie Streaming Website",
+            "title": "Movie Streaming Website",
             "images": ["images/projects/local_show_browser.png"],
             "description": "A Netflix-like website that allows you to stream your own movies and shows to you and other people. Currently has: Login, Register, VLC Media Player supported video playing, Admin control system for various features such as site settings and shows. Coming soon: UI revamp, HLS-streaming videos directly on the website.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }, { "language": "Python", "image": "images/languages/python.png" }, { "language": "Python-flask", "image": "" }, { "language": "SQLite", "image": "" }],
-            "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page" }],
+            "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page", "image": "icons/github.png" }],
         },
         {
             "title": "Lethal Company Mod Manager",
@@ -126,15 +126,22 @@ const ProjectPage = () => {
                     <div key={'project' + index} className="project">
                         <div className="image-container">
                             <img src={project.images[0]} className="image" />
+                            <div className="links">
+                                {project.links.map((link, linkIndex) =>
+                                    <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">
+                                        <img className="image" src={link.image} />
+                                    </a>
+                                )}
+                            </div>
                         </div>
                         <div className="content">
                             <h3 className="title">{project.title}</h3>
                             <p className="description">{project.description}</p>
-                            <div className="links">
-                                {project.links.map((link, linkIndex) =>
-                                    <a className="link" key={'projlink' + linkIndex} href={link.href}>
-                                        <HollowButton>{link.text}</HollowButton>
-                                    </a>
+                            <div className="code-languages">
+                                {project["code-languages"].map((language, langIndex) =>
+                                    <p className="language" key={"codelang" + langIndex}>
+                                        {language.language}
+                                    </p>
                                 )}
                             </div>
                         </div>

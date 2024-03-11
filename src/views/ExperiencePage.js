@@ -22,7 +22,7 @@ const ExperiencePage = () => {
             ]
         },
         {
-            "title": "The Finnish Defence Forces, Military service",
+            "title": "The Finnish Defence Forces",
             "logo": "images/work_logos/pv.png",
             "descriptions": [
                 {
@@ -73,7 +73,7 @@ const ExperiencePage = () => {
     ]
 
     return (
-        <div className="experience-page">
+        <div className="experience-page" id="experience-page">
             <div className="logos">
                 <div className="logo-list">
                     <div className="logo">

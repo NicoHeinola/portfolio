@@ -5,11 +5,15 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    min-height: calc(100vh - 90px);
-    background: rgb(238, 217, 208);
+    min-height: calc(100vh);
+    background: $site-background-gradient-3;
 
     * {
         font-family: $main-font-family;
+    }
+
+    &>.title {
+        margin: 50px 0;
     }
 
     .logos {
@@ -65,24 +69,61 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        gap: 50px;
+        gap: 150px;
 
         .project {
             display: flex;
             flex-direction: row;
 
-            width: 850px;
+            width: 700px;
             height: 270px;
 
+            background: rgba(255, 255, 255, 0.568);
+            padding: 20px;
+            border-radius: 15px;
+
             .image-container {
-                min-width: 400px;
+                min-width: 220px;
                 height: 100%;
 
                 .image {
+                    position: absolute;
+                    width: calc(100% + 140px);
+                    height: 100%;
+                    left: -120px;
+                    object-fit: cover;
+                    border-radius: 15px;
+                    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.363);
+                }
+
+                .links {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
-                    border-radius: 10px;
+                    left: 0;
+                    top: 0;
+
+                    .link {
+                        width: 35px;
+                        height: 35px;
+                        padding: 5px;
+                        transition: all 0.2s;
+
+                        cursor: pointer;
+
+                        &:hover {
+                            scale: 1.05;
+                        }
+
+                        .image {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
                 }
             }
 
@@ -95,22 +136,29 @@
                 padding-left: 40px;
 
                 .title {
-                    text-align: right;
+                    color: rgb(0, 0, 0);
                 }
 
                 .description {
-                    background: rgba(255, 255, 255, 0.247);
+                    background: rgba(24, 24, 41, 0.664);
                     padding: 20px;
-                    border-radius: 10px;
+                    border-radius: 3px;
+                    color: white;
                 }
 
-                .links {
+                .code-languages {
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-between;
+                    flex-wrap: wrap;
 
                     width: 100%;
-                    margin-top: auto;
+                    gap: 10px;
+
+                    .language {
+                        color: rgb(128, 27, 211);
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
                 }
             }
         }
