@@ -1,6 +1,7 @@
 import "styles/views/projectpage.scss";
 import { useState } from "react";
 import HollowButton from "components/input/HollowButton";
+import ProjectCard from "components/cards/ProjectCard";
 
 const ProjectPage = () => {
 
@@ -10,50 +11,49 @@ const ProjectPage = () => {
             "images": ["images/projects/mias_beauty_and_hair.png"],
             "description": "A barber website I made.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
-            "link": "",
-            "website-link": "https://miasbeauty.fi/",
+            "links": [{ "href": "https://miasbeauty.fi/", "image": "icons/link.png" }],
         },
         {
             "title": "City Daylength Graph Calculator",
             "images": ["images/projects/city_daylength_graph.png"],
             "description": "A web application that forms graphs containing daytime durations of different cities for comparison. The graph system was self-made and doesn't use any additional libraries.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "CSS", "image": "images/languages/css.png" }, { "language": "PHP", "image": "images/languages/php.png" }, { "language": "Laravel/Lumen PHP Framework", "image": "images/languages/laravel.svg" }],
-            "link": "https://github.com/NicoHeinola/CityDayLengthGraph",
+            "links": [{ "href": "https://github.com/NicoHeinola/CityDayLengthGraph", "image": "icons/github.png" }],
         },
         {
             "title": "Auto Clicker",
             "images": ["images/projects/autoclicker_dark_theme.png", "images/projects/autoclicker_dark_theme.png"],
             "description": "This is an all-round tool for automating mouse clicks and it click over 1000 times per second! Most autoclickers either don't have all the necessary features or cost money but this one's got them all. Plus this software is completely free!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "Tk/Tcl" }],
-            "link": "https://github.com/NicoHeinola/AutoClicker",
+            "links": [{ "href": "https://github.com/NicoHeinola/AutoClicker", "image": "icons/github.png" }],
         },
         {
             "title": "YouTube Video Download Tool",
             "images": ["images/projects/youtube_downloader.png"],
             "description": "This tool allows you to download most YouTube videos and even choose their quality. Supports multiple downloads at once!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "Tk/Tcl", "image": "" }, { "language": "FFmpeg", "image": "" }],
-            "link": "https://github.com/NicoHeinola/YouTubeDownloader",
+            "links": [{ "href": "https://github.com/NicoHeinola/YouTubeDownloader", "image": "icons/github.png" }],
         },
         {
             "title": "Noita Game Save Backupper Tool",
             "images": ["images/projects/noita_save_backupper.png"],
             "description": "This app was made for a game called \"Noita\" and it's purpose is to enable users to backup their game saves. This is especially useful when you have a very large game file and it has the chance to corrupt at any moment.",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "python-eel", "image": "" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "CSS", "image": "images/languages/css.png" }, { "language": "Electron", "image": "images/languages/electron.png" }],
-            "link": "https://github.com/NicoHeinola/NoitaSaveBackupper",
+            "links": [{ "href": "https://github.com/NicoHeinola/NoitaSaveBackupper", "image": "icons/github.png" }],
         },
         {
             "title": "Super Alt+F4",
             "images": ["images/projects/super_alt_f4.png"],
             "description": "Have you ever had trouble forcing a program to close because it has disabled the alt+f4 key-combination? This program fixes that problem by bypassing that!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "PyQt5", "image": "images/languages/qt.png" }],
-            "link": "https://github.com/NicoHeinola/SuperAltF4",
+            "links": [{ "href": "https://github.com/NicoHeinola/SuperAltF4", "image": "icons/github.png" }],
         },
         {
             "title": "Infinite World Game",
             "images": ["images/projects/infinite_world_game.png"],
             "description": "This was a practise project with Unity and it's purpose was to study and learn how to make infinitely generating maps. It has been optimized quite well and supports rendering hundreds of chunks of tiles at once. It also has enemy spawning, character movement, entity stat system and a very basic pvp system.",
             "code-languages": [{ "language": "C#", "image": "images/languages/c_sharp.png" }, { "language": "Unity", "image": "images/languages/unity.png" }],
-            "link": "https://github.com/NicoHeinola/InfiniteWorldGame",
+            "links": [{ "href": "https://github.com/NicoHeinola/InfiniteWorldGame", "image": "icons/github.png" }],
         },
     ]
 
@@ -123,31 +123,14 @@ const ProjectPage = () => {
             <h1 className="title">Ongoing Projects</h1>
             <div className="projects">
                 {ongoingProjects.map((project, index) =>
-                    <div key={'project' + index} className="project">
-                        <div className="image-container">
-                            <img src={project.images[0]} className="image" />
-                        </div>
-                        <div className="content">
-                            <div className="title-row">
-                                <h3 className="title">{project.title}</h3>
-                                <div className="links">
-                                    {project.links.map((link, linkIndex) =>
-                                        <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">
-                                            <img className="image" src={link.image} />
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
-                            <p className="description">{project.description}</p>
-                            <div className="code-languages">
-                                {project["code-languages"].map((language, langIndex) =>
-                                    <p className="language" key={"codelang" + langIndex}>
-                                        {language.language}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectCard key={'project-card' + index} project={project}></ProjectCard>
+                )}
+
+            </div>
+            <h1 className="title">Finished Projects</h1>
+            <div className="projects">
+                {projects.map((project, index) =>
+                    <ProjectCard key={'project-card' + index} project={project}></ProjectCard>
                 )}
             </div>
         </div>

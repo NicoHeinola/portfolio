@@ -144,6 +144,9 @@
                 animation-fill-mode: forwards;
                 animation-duration: 0.4s;
 
+                text-shadow: 0 0 3px rgba(255, 255, 255, 0.664);
+                font-weight: bold;
+
                 &:hover {
                     scale: 1.05;
                 }
