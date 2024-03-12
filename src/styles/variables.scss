@@ -1,12 +1,30 @@
 $main-font-family: "Overpass";
 $secondary-font-family: 'Courier New', Courier, monospace;
-$site-background: rgb(241, 226, 214);
-$site-background-gradient: linear-gradient(180deg, rgb(253, 255, 230) 0%, $site-background 100%);
-$site-background-gradient-2: linear-gradient(180deg, rgb(241, 226, 214) 0%, rgb(222, 245, 245) 100%);
-$site-background-gradient-3: linear-gradient(180deg, rgb(222, 245, 245) 0%, rgb(163, 181, 236) 100%);
-$text-color: rgb(41, 37, 37);
+
+$site-background-1: rgb(0, 0, 0);
+$site-background-2: rgb(12, 5, 66);
+$site-background-3: rgb(8, 3, 41);
+$site-background-4: rgb(0, 0, 0);
+
+$site-background-gradient: linear-gradient(180deg, $site-background-1 0%, $site-background-2 100%);
+$site-background-gradient-2: linear-gradient(180deg, $site-background-2 0%, $site-background-3 100%);
+$site-background-gradient-3: linear-gradient(180deg, $site-background-3 0%, $site-background-4 100%);
+
+$text-color: rgb(255, 255, 255);
+
+$card-color: rgb(0, 0, 0);
+$card-text-color: rgb(255, 0, 0);
+$card-highlight-text-color: rgb(86, 156, 197);
+$card-description-color: #70697a;
+$card-description-text-color: #722cd3;
 
 $button-color-1-1: rgb(172, 217, 223);
 $button-color-2-1: rgb(145, 165, 231);
 
-$card-color: rgb(145, 165, 231);
+$shadow-color: rgba(197, 32, 32, 0.664);
+
+/* Navigation */
+$navigation-selector-color: rgb(17, 101, 255);
+$navigation-border-color: rgb(255, 255, 255);
+$navigation-container-bg: rgba(0, 0, 0, 0.103);
+$navigation-text-shadow: rgba(255, 255, 255, 0);

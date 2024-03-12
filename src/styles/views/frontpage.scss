@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    background: $site-background;
+    background: $site-background-1;
     padding: 0 50px;
 
     gap: 70px;
@@ -169,7 +169,7 @@
                     top: 20px;
 
                     .image {
-                        background: rgba(0, 0, 0, 0.116);
+                        background: $shadow-color;
                     }
                 }
 
