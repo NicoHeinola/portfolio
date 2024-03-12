@@ -14,7 +14,7 @@ const ProjectPage = () => {
             "links": [{ "href": "https://miasbeauty.fi/", "image": "icons/link.png" }],
         },
         {
-            "title": "City Daylength Graph Calculator",
+            "title": "City Daylength Graph Calc",
             "images": ["images/projects/city_daylength_graph.png"],
             "description": "A web application that forms graphs containing daytime durations of different cities for comparison. The graph system was self-made and doesn't use any additional libraries.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "CSS", "image": "images/languages/css.png" }, { "language": "PHP", "image": "images/languages/php.png" }, { "language": "Laravel/Lumen PHP Framework", "image": "images/languages/laravel.svg" }],
@@ -28,14 +28,14 @@ const ProjectPage = () => {
             "links": [{ "href": "https://github.com/NicoHeinola/AutoClicker", "image": "icons/github.png" }],
         },
         {
-            "title": "YouTube Video Download Tool",
+            "title": "YouTube Video Downloader",
             "images": ["images/projects/youtube_downloader.png"],
             "description": "This tool allows you to download most YouTube videos and even choose their quality. Supports multiple downloads at once!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "Tk/Tcl", "image": "" }, { "language": "FFmpeg", "image": "" }],
             "links": [{ "href": "https://github.com/NicoHeinola/YouTubeDownloader", "image": "icons/github.png" }],
         },
         {
-            "title": "Noita Game Save Backupper Tool",
+            "title": "Noita Game Save Backupper",
             "images": ["images/projects/noita_save_backupper.png"],
             "description": "This app was made for a game called \"Noita\" and it's purpose is to enable users to backup their game saves. This is especially useful when you have a very large game file and it has the chance to corrupt at any moment.",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "python-eel", "image": "" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "CSS", "image": "images/languages/css.png" }, { "language": "Electron", "image": "images/languages/electron.png" }],
@@ -51,7 +51,7 @@ const ProjectPage = () => {
         {
             "title": "Infinite World Game",
             "images": ["images/projects/infinite_world_game.png"],
-            "description": "This was a practise project with Unity and it's purpose was to study and learn how to make infinitely generating maps. It has been optimized quite well and supports rendering hundreds of chunks of tiles at once. It also has enemy spawning, character movement, entity stat system and a very basic pvp system.",
+            "description": "This was a practise project with Unity and it's purpose was to study and learn how to make infinitely generating maps. It has been optimized quite well and supports rendering hundreds of chunks of tiles at once. It also has enemy spawning, character movement, entity stat system and a very basic pve system.",
             "code-languages": [{ "language": "C#", "image": "images/languages/c_sharp.png" }, { "language": "Unity", "image": "images/languages/unity.png" }],
             "links": [{ "href": "https://github.com/NicoHeinola/InfiniteWorldGame", "image": "icons/github.png" }],
         },

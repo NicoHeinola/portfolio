@@ -1,3 +1,4 @@
+import FancyText from "components/text/FancyText";
 import "styles/components/cards/projectcard.scss"
 
 const ProjectCard = (props) => {
@@ -5,12 +6,14 @@ const ProjectCard = (props) => {
 
     return (
         <div className="project-card">
+            <div className="shadow"></div>
+            <div className="bg"></div>
             <div className="image-container">
                 <img src={project.images[0]} className="image" />
             </div>
             <div className="content">
                 <div className="title-row">
-                    <h3 className="title">{project.title}</h3>
+                    <FancyText><h3 className="title">{project.title}</h3></FancyText>
                     <div className="links">
                         {project.links.map((link, linkIndex) =>
                             <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">

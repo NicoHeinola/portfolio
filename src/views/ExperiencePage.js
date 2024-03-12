@@ -1,3 +1,4 @@
+import FancyText from "components/text/FancyText";
 import "styles/views/experiencepage.scss";
 
 const ExperiencePage = () => {
@@ -99,7 +100,7 @@ const ExperiencePage = () => {
                     <div className="experience">
                         <div className="title-row">
                             <img className="icon" src={experience.logo} />
-                            <h2 className="title">{experience.title}</h2>
+                            <FancyText><h2 className="title">{experience.title}</h2></FancyText>
                         </div>
                         <ul className="description-list">
                             {experience.descriptions.map((description, descIndex) =>

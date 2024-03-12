@@ -5,9 +5,27 @@
     width: 700px;
     height: 270px;
 
-    background: rgba(255, 255, 255, 0.568);
     padding: 20px;
-    border-radius: 15px;
+
+    .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: #DFE8F8;
+        border-radius: 15px;
+    }
+
+    .shadow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 15px;
+        top: 15px;
+        background: rgba(0, 0, 0, 0.082);
+        border-radius: 15px;
+    }
 
     .image-container {
         min-width: 220px;
@@ -17,7 +35,7 @@
             position: absolute;
             width: calc(100% + 140px);
             height: 100%;
-            left: -120px;
+            left: -95px;
             object-fit: cover;
             border-radius: 15px;
             box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.363);
@@ -30,7 +48,7 @@
         gap: 20px;
 
         width: 100%;
-        padding-left: 40px;
+        padding-left: 70px;
 
         .title-row {
             display: flex;
