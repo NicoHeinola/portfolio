@@ -6,26 +6,34 @@ const ExperiencePage = () => {
     const jobDescriptions = [
         {
             "title": "Alfons Digital",
+            "sub_title": "Junior Web Developer",
             "logo": "images/work_logos/alfonsdigitaloy.png",
             "descriptions": [
                 {
-                    "text": "Fullstack development of online education platforms like maol2 and Äly, utilizing Vue.js and Laravel/Lumen PHP framework"
+                    "text": "Fullstack development of online education platforms like Maol2 and Äly, utilizing Vue.js and Laravel/Lumen PHP framework"
                 },
                 {
-                    "text": "Postgress and SQL database management"
+                    "text": "Writing PHP unit tests with Laravel/Lumen's unit library"
+                },
+                {
+                    "text": "Postgress and MySQL database management"
                 },
                 {
                     "text": "Utilizing Paytrail's payment api on a webstore"
                 },
                 {
-                    "text": "Testing, maintenance and backup automation of wordpress web applications"
+                    "text": "Testing, maintenance and backup automation of Wordpress web applications"
                 }
             ]
         },
         {
             "title": "The Finnish Defence Forces",
+            "sub_title": "Software Developer",
             "logo": "images/work_logos/pv.png",
             "descriptions": [
+                {
+                    "text": "Served my military service as a programmer"
+                },
                 {
                     "text": "Development of a desktop application with C++ and Qt 6 framework"
                 },
@@ -36,13 +44,14 @@ const ExperiencePage = () => {
         },
         {
             "title": "Taitaja2022",
+            "sub_title": "1st Place",
             "logo": "images/work_logos/skillsfinland.png",
             "descriptions": [
                 {
-                    "text": "Secured first place in the Finnish championships of Taitaja2022"
+                    "text": "Secured the first place in the Finnish championships of Taitaja2022"
                 },
                 {
-                    "text": "Developed a homepage from the ground up using JavaScript and React"
+                    "text": "Continued the development of a homepage from the ground up using JavaScript and React"
                 },
                 {
                     "text": "Created a backend using PHP that. It allowed users to control map markers on the homepage"
@@ -58,6 +67,7 @@ const ExperiencePage = () => {
         },
         {
             "title": "Taitaja2021",
+            "sub_title": "3rd Place",
             "logo": "images/work_logos/skillsfinland.png",
             "descriptions": [
                 {
@@ -76,6 +86,7 @@ const ExperiencePage = () => {
     return (
         <div className="experience-page" id="experience-page">
             <div className="logos">
+                <div className="bg"></div>
                 <div className="logo-list">
                     <div className="logo">
                         <img className="image" src="images/work_logos/pv.png" />
@@ -101,6 +112,9 @@ const ExperiencePage = () => {
                         <div className="title-row">
                             <img className="icon" src={experience.logo} />
                             <FancyText><h2 className="title">{experience.title}</h2></FancyText>
+                        </div>
+                        <div className="sub-title-row">
+                            <h4 className="sub-title">{experience.sub_title}</h4>
                         </div>
                         <ul className="description-list">
                             {experience.descriptions.map((description, descIndex) =>

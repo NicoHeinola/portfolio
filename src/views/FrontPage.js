@@ -11,8 +11,6 @@ function FrontPage() {
 
     return (
         <div className="front-page" id="front-page">
-            <ParticleCanvas className="particles" startDelaySeconds={5}></ParticleCanvas>
-            <div className="background"></div>
             <div className="hi-section">
                 <div className="social-medias">
                     <div className="list-of-medias">

@@ -8,7 +8,7 @@ class Particle {
 
         this.maxSpeed = 0.5;
         this.minSpeed = -0.5;
-        this.maxOpacity = 0.3;
+        this.maxOpacity = 0.4;
 
         this.maxLifeSpan = 20000;
         this.minLifeSpan = 6000;
@@ -34,17 +34,17 @@ class Particle {
                 randomX = Math.random() * rectWidth;
                 randomY = Math.random() * edgeDistance;
                 break;
-            case 1: // Right edge
+            case 0: // Right edge
                 randomX = rectWidth - (Math.random() * edgeDistance);
-                randomY = Math.random() * rectHeight;
+                randomY = Math.random() * rectHeight - 100;
                 break;
             case 2: // Bottom edge
                 randomX = Math.random() * rectWidth;
                 randomY = rectHeight - (Math.random() * edgeDistance) - 100;
                 break;
-            case 3: // Left edge
+            case 1: // Left edge
                 randomX = Math.random() * edgeDistance;
-                randomY = Math.random() * rectHeight;
+                randomY = Math.random() * rectHeight - 100;
                 break;
             default:
                 randomX = Math.random() * rectWidth;
@@ -62,7 +62,7 @@ class Particle {
         this.y = randomPosition.y
 
         this.speedX = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
-        this.speedY = -Math.abs(Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed));
+        this.speedY = Math.min(Math.max(this.minSpeed, (Math.random() - 0.5) * 1), this.maxSpeed);
 
         this.alpha = 0;
 
@@ -73,10 +73,7 @@ class Particle {
 
         // Randomize color
         let randomColorList = [
-            { r: 224, g: 200, b: 135 },
-            { r: 172, g: 217, b: 223 },
-            { r: 145, g: 165, b: 231 },
-            { r: 219, g: 125, b: 96 }
+            { r: 93, g: 144, b: 162 },
         ]
         this.color = randomColorList[Math.floor(Math.random() * randomColorList.length)];
 
@@ -202,11 +199,8 @@ const ParticleCanvas = (props) => {
 
         let particles = [];
 
+        let particle;
         for (let i = 0; i < 3; i++) {
-            let particle = new SquareParticle(offscreenCanvas);
-            particle.resetCallback();
-            particles.push(particle)
-
             particle = new CircleParticle(offscreenCanvas);
             particle.resetCallback();
             particles.push(particle)

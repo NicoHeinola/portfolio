@@ -9,7 +9,7 @@ const ProjectPage = () => {
         {
             "title": "Mia's Beauty And Hair",
             "images": ["images/projects/mias_beauty_and_hair.png"],
-            "description": "A barber website I made.",
+            "description": "I designed and coded a barber website for one of my family members. I also handled the hosting and search engine indexing processes.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
             "links": [{ "href": "https://miasbeauty.fi/", "image": "icons/link.png" }],
         },
@@ -66,9 +66,16 @@ const ProjectPage = () => {
             "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page", "image": "icons/github.png" }],
         },
         {
+            "title": "Portfolio",
+            "images": ["images/projects/portfolio.png"],
+            "description": "This page is still under progress but it has most of my projects and work experience. I'm constantly updating this website to be up to date.",
+            "code-languages": [{ "language": "React", "image": "images/languages/react.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
+            "links": [{ "href": "https://github.com/NicoHeinola/portfolio", "text": "Github Page", "image": "icons/github.png" }],
+        },
+        {
             "title": "Lethal Company Mod Manager",
             "images": ["images/projects/lethal_company_mod_manager.png"],
-            "description": "a Tool that allows users to install and manage mods in a game called \"Lethal Company\". This is still a very ongoing project.",
+            "description": "a Tool that allows users to install and manage mods in a game called \"Lethal Company\". I'm still working on the UI and most of the functionalities such as downloading mods, creating modpacks and using them inside the game.",
             "code-languages": [{ "language": "C++", "image": "images/languages/c_plus_plus.png" }, { "language": "Qt6 (QML)", "image": "images/languages/qt.png" }],
             "links": [],
         },
@@ -77,6 +84,7 @@ const ProjectPage = () => {
     return (
         <div className="project-page" id="project-page">
             <div className="logos">
+                <div className="bg"></div>
                 <div className="logo-list">
                     <div className="logo">
                         <img className="image" src="images/languages/vuejs.png" />

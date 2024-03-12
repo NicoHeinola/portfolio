@@ -18,39 +18,54 @@
     transform: translateX(-50%);
     margin-top: 20px;
 
+    &.no-delay {
+        .container {
+            opacity: 1;
+            animation-name: initial;
+
+            .selection {
+                animation-name: initial;
+            }
+
+            .links {
+                animation-name: initial;
+
+                .link {
+                    animation-name: initial;
+                }
+            }
+        }
+    }
+
     /* when minimized and not hovering*/
     &.minimized:not(:hover) {
 
         .container {
-            width: 170px;
-            height: 10px;
+            height: 10px !important;
             overflow: hidden;
-            opacity: 0.8;
+            opacity: 1 !important;
 
             .links {
                 opacity: 0;
-                transition-delay: 0s;
+                transition-delay: 0s !important;
                 transition-duration: 0.1s;
             }
         }
     }
 
-    &.minimized {
+    &.minimized,
+    &.no-delay {
         .container {
-            animation-name: initial;
             opacity: 1;
 
             .selection {
-                animation-name: initial;
                 opacity: 1;
             }
 
             .links {
-                animation-name: initial;
                 opacity: 1;
 
                 .link {
-                    animation-name: initial;
                     opacity: 1;
                 }
             }
@@ -58,8 +73,8 @@
     }
 
     .container {
-        width: 100%;
-        height: 100%;
+        width: 400px;
+        height: 50px;
         transition: all 0.2s;
         background: $navigation-container-bg;
         border-radius: 50px;
@@ -71,6 +86,9 @@
         animation-duration: 0.8s;
         animation-delay: 3.7s;
         animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+
+        transition: all 0.2s;
 
         @keyframes load-animation {
             0% {

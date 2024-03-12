@@ -1,3 +1,5 @@
+@import "styles/variables";
+
 .fancy-text {
     display: flex;
     justify-content: center;
@@ -11,10 +13,10 @@
         width: 100%;
         height: 100%;
 
-        $fancyElementSize1_1: 53%;
-        $fancyElementSize1_2: 85%;
+        $fancyElementSize1_1: 15px;
+        $fancyElementSize1_2: 15px;
         $fancyElementSize2: 3px;
-        $fancyElementColor: rgb(0, 0, 0);
+        $fancyElementColor: $fancy-text-line-color;
 
         .element {
             position: absolute;

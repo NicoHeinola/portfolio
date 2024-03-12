@@ -15,6 +15,7 @@ body {
     padding: 0;
     outline: none;
     scroll-behavior: smooth;
+    z-index: 10;
 }
 
 p,
@@ -112,4 +113,15 @@ h3 {
     100% {
         opacity: 1;
     }
+}
+
+.App {
+    background: $main-linear-bg;
+}
+
+.particles {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 7;
 }

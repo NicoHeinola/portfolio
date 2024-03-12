@@ -3,7 +3,10 @@ import { useState, useEffect, useRef } from "react";
 
 const Navigation = () => {
     const selectionRef = useRef(null);
-    let hoveredSectionId = "";
+
+    const [minimizedClass, setMinimizedClass] = useState("");
+    const [activeSectionIdState, setActiveSectionIdState] = useState("");
+    const [hoveredSectionIdState, setHoveredSectionIdState] = useState("");
 
     let links = [
         { text: "Home", href: "#", sectionId: "front-page", linkId: "home-link" },
@@ -11,7 +14,8 @@ const Navigation = () => {
         { text: "My Projects", href: "#project-page", sectionId: "project-page", linkId: "my-projects-link" },
     ]
 
-    let activeSectionId = "";
+    let activeSectionId = activeSectionIdState;
+    let hoveredSectionId = hoveredSectionIdState;
 
     const getLinkFromSectionId = (sectionId) => {
         return links.find(linkObject => linkObject.sectionId === sectionId);
@@ -49,8 +53,16 @@ const Navigation = () => {
         });
 
         checkSectionSelectionSize(getLinkFromSectionId(hoveredSectionId));
-        activeSectionId = active.sectionId;
         setNavigationSelectionTo(active);
+
+        if (scrollPosition >= 100) {
+            setMinimizedClass("minimized no-delay");
+        } else {
+            setMinimizedClass("no-delay");
+        }
+
+        activeSectionId = active.sectionId;
+        setActiveSectionIdState(activeSectionId);
     };
 
     const getBoundingRect = (id) => {
@@ -82,10 +94,6 @@ const Navigation = () => {
 
     // Tells the browser to scroll to a specific section of the page
     const scrollToSection = (linkObject) => {
-        if (linkObject.sectionId === activeSectionId) {
-            return;
-        }
-
         const sectionElement = document.getElementById(linkObject.sectionId);
         window.scrollTo({
             top: sectionElement.offsetTop,
@@ -116,6 +124,7 @@ const Navigation = () => {
 
     const onSectionHover = (linkObject) => {
         hoveredSectionId = linkObject.sectionId;
+        setHoveredSectionIdState(hoveredSectionId);
         checkSectionSelectionSize(linkObject);
     }
 
@@ -123,6 +132,7 @@ const Navigation = () => {
         selectionRef.current.style.scale = `${1}`;
         selectionRef.current.style.marginLeft = `0px`;
         hoveredSectionId = "";
+        setHoveredSectionIdState(hoveredSectionId)
     }
 
     // Add scroll event listener
@@ -130,6 +140,7 @@ const Navigation = () => {
         setTimeout(() => {
             checkSectionSelectionSize(links[0]);
             activeSectionId = links[0].sectionId;
+            setActiveSectionIdState(activeSectionId);
             setNavigationSelectionTo(links[0]);
 
             onSectionUnHover();
@@ -142,7 +153,7 @@ const Navigation = () => {
     }, []);
 
     return (
-        <nav className="navigation">
+        <nav className={"navigation " + minimizedClass}>
             <div className="container">
                 <div className="links">
                     <div ref={selectionRef} className="selection" id="nav-selection"></div>
