@@ -14,9 +14,6 @@ const Navigation = () => {
         { text: "My Projects", href: "#project-page", sectionId: "project-page", linkId: "my-projects-link" },
     ]
 
-    let activeSectionId = activeSectionIdState;
-    let hoveredSectionId = hoveredSectionIdState;
-
     const getLinkFromSectionId = (sectionId) => {
         return links.find(linkObject => linkObject.sectionId === sectionId);
     }
@@ -52,7 +49,12 @@ const Navigation = () => {
             }
         });
 
-        checkSectionSelectionSize(getLinkFromSectionId(hoveredSectionId));
+        let linkObject = getLinkFromSectionId(hoveredSectionIdState);
+        if (linkObject) {
+            checkSectionSelectionSize(linkObject, active.sectionId, hoveredSectionIdState);
+        }
+
+        setActiveSectionIdState(active.sectionId);
         setNavigationSelectionTo(active);
 
         if (scrollPosition >= 100) {
@@ -60,9 +62,6 @@ const Navigation = () => {
         } else {
             setMinimizedClass("no-delay");
         }
-
-        activeSectionId = active.sectionId;
-        setActiveSectionIdState(activeSectionId);
     };
 
     const getBoundingRect = (id) => {
@@ -80,6 +79,10 @@ const Navigation = () => {
     const setNavigationSelectionTo = (linkObject) => {
         const linkRect = getBoundingRect(linkObject.linkId);
         if (!linkRect) {
+            return;
+        }
+
+        if (!selectionRef) {
             return;
         }
 
@@ -102,7 +105,7 @@ const Navigation = () => {
     };
 
     // Slightly moves and expands the selection if hovered
-    const checkSectionSelectionSize = (linkObject) => {
+    const checkSectionSelectionSize = (linkObject, activeSectionId, hoveredSectionId = "") => {
         if (hoveredSectionId === "") {
             return;
         }
@@ -123,34 +126,33 @@ const Navigation = () => {
     }
 
     const onSectionHover = (linkObject) => {
-        hoveredSectionId = linkObject.sectionId;
-        setHoveredSectionIdState(hoveredSectionId);
-        checkSectionSelectionSize(linkObject);
+        setHoveredSectionIdState(linkObject.sectionId);
+        checkSectionSelectionSize(linkObject, activeSectionIdState, linkObject.sectionId);
     }
 
     const onSectionUnHover = () => {
         selectionRef.current.style.scale = `${1}`;
         selectionRef.current.style.marginLeft = `0px`;
-        hoveredSectionId = "";
-        setHoveredSectionIdState(hoveredSectionId)
+        setHoveredSectionIdState("");
     }
 
     // Add scroll event listener
     useEffect(() => {
         setTimeout(() => {
-            checkSectionSelectionSize(links[0]);
-            activeSectionId = links[0].sectionId;
-            setActiveSectionIdState(activeSectionId);
+            checkSectionSelectionSize(links[0], links[0].sectionId, "");
+            setActiveSectionIdState(links[0].sectionId);
             setNavigationSelectionTo(links[0]);
 
             onSectionUnHover();
         }, 4400)
+    }, []);
 
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [hoveredSectionIdState]);
 
     return (
         <nav className={"navigation " + minimizedClass}>
