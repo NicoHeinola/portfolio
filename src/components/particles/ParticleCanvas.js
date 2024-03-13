@@ -26,19 +26,19 @@ class Particle {
 
     randomPositionNearEdges(rectWidth, rectHeight, edgeDistance) {
         // Randomly choose which edge to place the point on
-        let edge = Math.floor(Math.random() * 4); // 0, 1, 2, or 3 for each edge
+        let edge = Math.floor(Math.random() * 2); // 0, 1, 2, or 3 for each edge
         let randomX, randomY;
 
         switch (edge) {
-            case 0: // Top edge
+            /*case 0: // Top edge
                 randomX = Math.random() * rectWidth;
                 randomY = Math.random() * edgeDistance;
-                break;
-            case 0: // Right edge
+                break;*/
+            /*case 1: // Right edge
                 randomX = rectWidth - (Math.random() * edgeDistance);
                 randomY = Math.random() * rectHeight - 100;
-                break;
-            case 2: // Bottom edge
+                break;*/
+            case 0: // Bottom edge
                 randomX = Math.random() * rectWidth;
                 randomY = rectHeight - (Math.random() * edgeDistance) - 100;
                 break;
@@ -102,7 +102,7 @@ class Particle {
     draw() { }
 }
 
-class SquareParticle extends Particle {
+/*class SquareParticle extends Particle {
     constructor(canvasElement) {
         super(canvasElement);
 
@@ -129,7 +129,7 @@ class SquareParticle extends Particle {
         this.ctx.roundRect(this.x, this.y, this.width, this.height, this.radius);
         this.ctx.fill();
     }
-}
+}*/
 
 class CircleParticle extends Particle {
     constructor(canvasElement) {
@@ -259,7 +259,7 @@ const ParticleCanvas = (props) => {
         window.addEventListener('resize', resizeCanvas, false);
 
 
-    }, [canvasRef, props.startDelay])
+    }, [canvasRef, props.startDelay, props.startDelaySeconds])
 
     return (
         <canvas ref={canvasRef} className={"particle-canvas " + props.className}></canvas>

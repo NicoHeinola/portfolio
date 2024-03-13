@@ -1,6 +1,4 @@
 import "styles/views/projectpage.scss";
-import { useState } from "react";
-import HollowButton from "components/input/HollowButton";
 import ProjectCard from "components/cards/ProjectCard";
 
 const ProjectPage = () => {
@@ -87,43 +85,43 @@ const ProjectPage = () => {
                 <div className="bg"></div>
                 <div className="logo-list">
                     <div className="logo">
-                        <img className="image" src="images/languages/vuejs.png" />
+                        <img alt="" className="image" src="images/languages/vuejs.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/react.png" />
+                        <img alt="" className="image" src="images/languages/react.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/js.png" />
+                        <img alt="" className="image" src="images/languages/js.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/php.png" />
+                        <img alt="" className="image" src="images/languages/php.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/laravel.svg" />
+                        <img alt="" className="image" src="images/languages/laravel.svg" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/css.png" />
+                        <img alt="" className="image" src="images/languages/css.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/sass.png" />
+                        <img alt="" className="image" src="images/languages/sass.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/python.png" />
+                        <img alt="" className="image" src="images/languages/python.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/c_plus_plus.png" />
+                        <img alt="" className="image" src="images/languages/c_plus_plus.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/c_sharp.png" />
+                        <img alt="" className="image" src="images/languages/c_sharp.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/qt.png" />
+                        <img alt="" className="image" src="images/languages/qt.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/electron.png" />
+                        <img alt="" className="image" src="images/languages/electron.png" />
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/languages/unity.png" />
+                        <img alt="" className="image" src="images/languages/unity.png" />
                     </div>
                 </div>
             </div>

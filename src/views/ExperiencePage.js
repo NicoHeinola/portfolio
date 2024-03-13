@@ -89,28 +89,28 @@ const ExperiencePage = () => {
                 <div className="bg"></div>
                 <div className="logo-list">
                     <div className="logo">
-                        <img className="image" src="images/work_logos/pv.png" />
+                        <img alt="" className="image" src="images/work_logos/pv.png" />
                         <p className="text">The Finnish Defence Forces</p>
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/work_logos/alfonsdigitaloy.png" />
+                        <img alt="" className="image" src="images/work_logos/alfonsdigitaloy.png" />
                         <p className="text">Alfons Digital</p>
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/work_logos/skillsfinland.png" />
+                        <img alt="" className="image" src="images/work_logos/skillsfinland.png" />
                         <p className="text">Taitaja2022</p>
                     </div>
                     <div className="logo">
-                        <img className="image" src="images/work_logos/skillsfinland.png" />
+                        <img alt="" className="image" src="images/work_logos/skillsfinland.png" />
                         <p className="text">Taitaja2021</p>
                     </div>
                 </div>
             </div>
             <div className="experiences">
                 {jobDescriptions.map((experience, expIndex) =>
-                    <div className="experience">
+                    <div key={"experience" + expIndex} className="experience">
                         <div className="title-row">
-                            <img className="icon" src={experience.logo} />
+                            <img alt="" className="icon" src={experience.logo} />
                             <FancyText><h2 className="title">{experience.title}</h2></FancyText>
                         </div>
                         <div className="sub-title-row">

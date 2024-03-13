@@ -1,11 +1,10 @@
 import HollowButton from "components/input/HollowButton";
-import ParticleCanvas from "components/particles/ParticleCanvas";
 import CursorText from "components/text/CursorText";
 import EncryptedCursorText from "components/text/EncryptedCursorText";
 import "styles/views/frontpage.scss"
 
 function FrontPage() {
-    const isFirefox = typeof InstallTrigger !== 'undefined';
+    const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
     let description = "Programming is more than just a job for me; it's my passion. Specializing in web development, I've also dedicated my free time to making desktop applications and games. Continuously seeking ways to enhance my skills, programming is both my career and a fulfilling hobby.";
 

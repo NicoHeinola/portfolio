@@ -9,7 +9,7 @@ const ProjectCard = (props) => {
             <div className="shadow"></div>
             <div className="bg"></div>
             <div className="image-container">
-                <img src={project.images[0]} className="image" />
+                <img alt="" src={project.images[0]} className="image" />
             </div>
             <div className="content">
                 <div className="title-row">
@@ -17,7 +17,7 @@ const ProjectCard = (props) => {
                     <div className="links">
                         {project.links.map((link, linkIndex) =>
                             <a className="link" key={'projlink' + linkIndex} href={link.href} target="_blank" rel="noreferrer">
-                                <img className="image" src={link.image} />
+                                <img alt="" className="image" src={link.image} />
                             </a>
                         )}
                     </div>

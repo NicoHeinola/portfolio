@@ -1,5 +1,5 @@
 import "styles/components/navigation/navigation.scss";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 const Navigation = () => {
     const selectionRef = useRef(null);
@@ -7,19 +7,74 @@ const Navigation = () => {
     const [minimizedClass, setMinimizedClass] = useState("");
     const [activeSectionIdState, setActiveSectionIdState] = useState("");
     const [hoveredSectionIdState, setHoveredSectionIdState] = useState("");
+    const [appearanceTimer, setAppearanceTimer] = useState("");
 
-    let links = [
+    let links = useMemo(() => [
         { text: "Home", href: "#", sectionId: "front-page", linkId: "home-link" },
         { text: "Experience", href: "#experience-page", sectionId: "experience-page", linkId: "experience-link" },
         { text: "My Projects", href: "#project-page", sectionId: "project-page", linkId: "my-projects-link" },
-    ]
+    ], []);
 
-    const getLinkFromSectionId = (sectionId) => {
+    const getLinkFromSectionId = useCallback((sectionId) => {
         return links.find(linkObject => linkObject.sectionId === sectionId);
+    }, [links]);
+
+    const getBoundingRect = (id) => {
+        const element = document.getElementById(id);
+
+        if (!element || !selectionRef) {
+            return undefined;
+        }
+
+        const elementRect = element.getBoundingClientRect();
+        return elementRect;
     }
 
+    // Slightly moves and expands the selection if hovered
+    const checkSectionSelectionSize = useCallback((linkObject, activeSectionId, hoveredSectionId = "") => {
+        if (hoveredSectionId === "") {
+            return;
+        }
+
+        // Let's expand to both directions if hovering current one
+        if (linkObject.sectionId === activeSectionId) {
+            selectionRef.current.style.scale = `${1.1}`;
+            selectionRef.current.style.marginLeft = "0px";
+        } else {
+            selectionRef.current.style.scale = `${1.0}`;
+
+            const linkRect = getBoundingRect(linkObject.linkId);
+            const selectionRect = selectionRef.current.getBoundingClientRect();
+
+            let dir = (selectionRect.x < linkRect.x) ? 1 : -1;
+            selectionRef.current.style.marginLeft = `${9 * dir}px`;
+        }
+    }, []);
+
+    // Moves and resizes the selection line to match nav link
+    const setNavigationSelectionTo = useCallback((linkObject) => {
+        const linkRect = getBoundingRect(linkObject.linkId);
+        if (!linkRect) {
+            return;
+        }
+
+        if (!selectionRef) {
+            return;
+        }
+
+        const linkElement = document.getElementById(linkObject.linkId);
+
+        const linkParentRect = linkElement.parentElement.getBoundingClientRect();
+        let positionX = linkRect.left - linkParentRect.left;
+
+        selectionRef.current.style.left = `${positionX}px`;
+        selectionRef.current.style.width = `${linkRect.width - 7}px`;
+    }, []);
+
     // Called on page scroll
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
+        clearInterval(appearanceTimer);
+
         const scrollPosition = window.scrollY;
 
         // Adjust these values as needed based on your sections' positions
@@ -62,68 +117,16 @@ const Navigation = () => {
         } else {
             setMinimizedClass("no-delay");
         }
-    };
-
-    const getBoundingRect = (id) => {
-        const element = document.getElementById(id);
-
-        if (!element || !selectionRef) {
-            return undefined;
-        }
-
-        const elementRect = element.getBoundingClientRect();
-        return elementRect;
-    }
-
-    // Moves and resizes the selection line to match nav link
-    const setNavigationSelectionTo = (linkObject) => {
-        const linkRect = getBoundingRect(linkObject.linkId);
-        if (!linkRect) {
-            return;
-        }
-
-        if (!selectionRef) {
-            return;
-        }
-
-        const linkElement = document.getElementById(linkObject.linkId);
-
-        const linkParentRect = linkElement.parentElement.getBoundingClientRect();
-        let positionX = linkRect.left - linkParentRect.left;
-
-        selectionRef.current.style.left = `${positionX}px`;
-        selectionRef.current.style.width = `${linkRect.width - 7}px`;
-    }
+    }, [hoveredSectionIdState, appearanceTimer, links, checkSectionSelectionSize, getLinkFromSectionId, setNavigationSelectionTo]);
 
     // Tells the browser to scroll to a specific section of the page
-    const scrollToSection = (linkObject) => {
+    const scrollToSection = useCallback((linkObject) => {
         const sectionElement = document.getElementById(linkObject.sectionId);
         window.scrollTo({
             top: sectionElement.offsetTop,
             behavior: 'smooth',
         })
-    };
-
-    // Slightly moves and expands the selection if hovered
-    const checkSectionSelectionSize = (linkObject, activeSectionId, hoveredSectionId = "") => {
-        if (hoveredSectionId === "") {
-            return;
-        }
-
-        // Let's expand to both directions if hovering current one
-        if (linkObject.sectionId === activeSectionId) {
-            selectionRef.current.style.scale = `${1.1}`;
-            selectionRef.current.style.marginLeft = "0px";
-        } else {
-            selectionRef.current.style.scale = `${1.0}`;
-
-            const linkRect = getBoundingRect(linkObject.linkId);
-            const selectionRect = selectionRef.current.getBoundingClientRect();
-
-            let dir = (selectionRect.x < linkRect.x) ? 1 : -1;
-            selectionRef.current.style.marginLeft = `${9 * dir}px`;
-        }
-    }
+    }, []);
 
     const onSectionHover = (linkObject) => {
         setHoveredSectionIdState(linkObject.sectionId);
@@ -138,21 +141,24 @@ const Navigation = () => {
 
     // Add scroll event listener
     useEffect(() => {
-        setTimeout(() => {
+        let timer = setTimeout(() => {
             checkSectionSelectionSize(links[0], links[0].sectionId, "");
             setActiveSectionIdState(links[0].sectionId);
             setNavigationSelectionTo(links[0]);
 
             onSectionUnHover();
         }, 4400)
-    }, []);
+
+        setAppearanceTimer(timer);
+
+    }, [links, checkSectionSelectionSize, setNavigationSelectionTo]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [hoveredSectionIdState]);
+    }, [handleScroll]);
 
     return (
         <nav className={"navigation " + minimizedClass}>
