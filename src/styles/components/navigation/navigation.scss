@@ -135,6 +135,7 @@
         }
 
         .links {
+            position: relative;
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
@@ -147,6 +148,7 @@
             transition-delay: 0.1s;
 
             .link {
+                position: relative;
                 text-align: center;
                 border-radius: 50px;
 

@@ -118,6 +118,8 @@ const Navigation = () => {
 
     // Tells the browser to scroll to a specific section of the page
     const scrollToSection = useCallback((linkObject) => {
+        window.location.hash = linkObject.sectionId;
+
         const sectionElement = document.getElementById(linkObject.sectionId);
         window.scrollTo({
             top: sectionElement.offsetTop,
