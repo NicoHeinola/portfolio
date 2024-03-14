@@ -16,7 +16,7 @@ const ProjectPage = () => {
         {
             "title": "Mia's Beauty And Hair",
             "images": ["images/projects/mias_beauty_and_hair.png"],
-            "description": "I designed and coded a barber website for one of my family members. I also handled the hosting and search engine indexing processes.",
+            "description": "I designed and coded a barber website and handled the hosting and search engine indexing processes.",
             "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
             "links": [{ "href": "https://miasbeauty.fi/", "image": "icons/link.png" }],
         },
@@ -75,7 +75,7 @@ const ProjectPage = () => {
         {
             "title": "Portfolio",
             "images": ["images/projects/portfolio.png"],
-            "description": "This page is still under progress but it has most of my projects and work experience. I'm constantly updating this website to be up to date.",
+            "description": "I'm actively updating this page to reflect my current projects and improving this website whenever I have time.",
             "code-languages": [{ "language": "React", "image": "images/languages/react.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
             "links": [{ "href": "https://github.com/NicoHeinola/portfolio", "text": "Github Page", "image": "icons/github.png" }],
         },

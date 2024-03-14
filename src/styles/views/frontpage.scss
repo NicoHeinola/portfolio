@@ -131,6 +131,16 @@
 
         .title {
             margin-bottom: 10px;
+
+            &.job-title {
+                .cursor {
+                    background: $card-highlight-text-color;
+                }
+
+                * {
+                    color: $card-highlight-text-color;
+                }
+            }
         }
 
         .social-medias {
