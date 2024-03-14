@@ -16,6 +16,7 @@
     }
 
     .logos {
+        position: relative;
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -72,6 +73,7 @@
 
 
     .projects {
+        position: relative;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

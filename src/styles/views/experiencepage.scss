@@ -17,6 +17,7 @@
     }
 
     .logos {
+        position: relative;
         display: flex;
         flex-direction: row;
 
@@ -71,6 +72,7 @@
     }
 
     .experiences {
+        position: relative;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -78,10 +80,11 @@
 
         margin: auto;
         max-width: 100%;
-        padding: 100px 50px;
+        padding: 50px 50px;
         gap: 50px;
 
         .experience {
+            position: relative;
             display: flex;
             flex-direction: column;
 
@@ -129,6 +132,7 @@
             }
 
             .description-list {
+                position: relative;
                 width: calc(100% - 25px);
                 padding-left: 25px;
                 list-style: none;
@@ -148,6 +152,7 @@
                 }
 
                 .description {
+                    position: relative;
                     margin: 10px 0;
                     white-space: break-space;
                     color: $card-description-text-color;

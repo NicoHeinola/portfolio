@@ -9,7 +9,9 @@ const ProjectCard = (props) => {
             <div className="shadow"></div>
             <div className="bg"></div>
             <div className="image-container">
-                <img alt="" src={project.images[0]} className="image" />
+                <div className="image-sub-container" onClick={() => props.openImageViewer(project.images)}>
+                    <img draggable="false" alt="" src={project.images[0]} className="image" />
+                </div>
             </div>
             <div className="content">
                 <div className="title-row">

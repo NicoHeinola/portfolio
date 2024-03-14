@@ -7,7 +7,6 @@ const Navigation = () => {
     const [minimizedClass, setMinimizedClass] = useState("");
     const [activeSectionIdState, setActiveSectionIdState] = useState("");
     const [hoveredSectionIdState, setHoveredSectionIdState] = useState("");
-    const [appearanceTimer, setAppearanceTimer] = useState("");
 
     let links = useMemo(() => [
         { text: "Home", href: "#", sectionId: "front-page", linkId: "home-link" },
@@ -73,8 +72,6 @@ const Navigation = () => {
 
     // Called on page scroll
     const handleScroll = useCallback(() => {
-        clearInterval(appearanceTimer);
-
         const scrollPosition = window.scrollY;
 
         // Adjust these values as needed based on your sections' positions
@@ -117,7 +114,7 @@ const Navigation = () => {
         } else {
             setMinimizedClass("no-delay");
         }
-    }, [hoveredSectionIdState, appearanceTimer, links, checkSectionSelectionSize, getLinkFromSectionId, setNavigationSelectionTo]);
+    }, [hoveredSectionIdState, links, checkSectionSelectionSize, getLinkFromSectionId, setNavigationSelectionTo]);
 
     // Tells the browser to scroll to a specific section of the page
     const scrollToSection = useCallback((linkObject) => {
@@ -141,17 +138,22 @@ const Navigation = () => {
 
     // Add scroll event listener
     useEffect(() => {
-        let timer = setTimeout(() => {
+        if (window.scrollY > 100) {
+            handleScroll();
+        }
+
+        setTimeout(() => {
+            if (window.scrollY > 100) {
+                return;
+            }
+
             checkSectionSelectionSize(links[0], links[0].sectionId, "");
             setActiveSectionIdState(links[0].sectionId);
             setNavigationSelectionTo(links[0]);
 
             onSectionUnHover();
         }, 4400)
-
-        setAppearanceTimer(timer);
-
-    }, [links, checkSectionSelectionSize, setNavigationSelectionTo]);
+    }, [links, checkSectionSelectionSize, setNavigationSelectionTo, handleScroll]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -159,6 +161,7 @@ const Navigation = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [handleScroll]);
+
 
     return (
         <nav className={"navigation " + minimizedClass}>

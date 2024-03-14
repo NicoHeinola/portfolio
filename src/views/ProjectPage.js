@@ -1,7 +1,16 @@
 import "styles/views/projectpage.scss";
 import ProjectCard from "components/cards/ProjectCard";
+import ImageViewer from "components/image/ImageViewer";
+import { useRef, useState } from "react";
 
 const ProjectPage = () => {
+    const [images, setImages] = useState([]);
+    let imageViewerRef = useRef(null);
+
+    const openImageViewer = (images) => {
+        imageViewerRef.current.open();
+        setImages(images);
+    }
 
     let projects = [
         {
@@ -20,7 +29,7 @@ const ProjectPage = () => {
         },
         {
             "title": "Auto Clicker",
-            "images": ["images/projects/autoclicker_dark_theme.png", "images/projects/autoclicker_dark_theme.png"],
+            "images": ["images/projects/autoclicker_light_theme.png", "images/projects/autoclicker_dark_theme.png"],
             "description": "This is an all-round tool for automating mouse clicks and it can click over 1000 times per second! Most autoclickers either don't have all the necessary features or cost money but this one's got them all. Plus this software is completely free!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "Tk/Tcl" }],
             "links": [{ "href": "https://github.com/NicoHeinola/AutoClicker", "image": "icons/github.png" }],
@@ -129,16 +138,17 @@ const ProjectPage = () => {
             <h1 className="title">Ongoing Projects</h1>
             <div className="projects">
                 {ongoingProjects.map((project, index) =>
-                    <ProjectCard key={'project-card' + index} project={project}></ProjectCard>
+                    <ProjectCard key={'project-card' + index} openImageViewer={openImageViewer} project={project}></ProjectCard>
                 )}
 
             </div>
             <h1 className="title">Finished Projects</h1>
             <div className="projects">
                 {projects.map((project, index) =>
-                    <ProjectCard key={'project-card' + index} project={project}></ProjectCard>
+                    <ProjectCard key={'project-card' + index} openImageViewer={openImageViewer} project={project}></ProjectCard>
                 )}
             </div>
+            <ImageViewer ref={imageViewerRef} images={images} />
         </div>
     )
 }
