@@ -41,6 +41,10 @@ p {
     font-size: 14px;
 }
 
+.hero-font {
+    font-size: 75px;
+}
+
 h1 {
     font-size: 50px;
 }
@@ -52,6 +56,8 @@ h2 {
 h3 {
     font-size: 26px;
 }
+
+@media all and (max-width: 1400px) {}
 
 @keyframes fade-from-right-to-left {
     0% {

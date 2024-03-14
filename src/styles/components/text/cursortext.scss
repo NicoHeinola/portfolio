@@ -46,6 +46,63 @@
         }
     }
 
+    @media all and (max-width: 1400px) {
+        &.big {
+            min-height: 120px;
+
+            .char {
+                font-size: 95px;
+            }
+
+            .cursor {
+                height: 100px;
+            }
+        }
+
+        &.semi-big {
+            min-height: 50px;
+            opacity: 0.6;
+
+            .char {
+                font-size: 40px;
+            }
+
+            .cursor {
+                width: 4px;
+                height: 40px;
+            }
+        }
+    }
+
+    @media all and (max-width: 800px) {
+        &.big {
+            min-height: 75px;
+
+            .char {
+                font-size: 55px;
+            }
+
+            .cursor {
+                height: 60px;
+                width: 5px;
+            }
+        }
+
+        &.semi-big {
+            min-height: 30px;
+            opacity: 0.6;
+
+            .char {
+                font-size: 30px;
+            }
+
+            .cursor {
+                width: 3px;
+                height: 30px;
+            }
+        }
+    }
+
     .char {
         font-family: $main-font-family;
         white-space: pre;

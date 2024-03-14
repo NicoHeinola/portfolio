@@ -32,7 +32,7 @@ const ExperiencePage = () => {
             "logo": "images/work_logos/pv.png",
             "descriptions": [
                 {
-                    "text": "Served my military service as a programmer"
+                    "text": "Served my military service as a software/fullstack developer"
                 },
                 {
                     "text": "Development of a desktop application with C++ and Qt 6 framework"

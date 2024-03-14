@@ -17,6 +17,40 @@
 
     margin: auto;
 
+    @media all and (max-width: 500px) {
+        padding: 0 10px;
+        max-width: calc(100% - 10px);
+
+        .hi-section {
+            margin: initial !important;
+            height: 100%;
+            padding: 100px 0;
+
+            .social-medias {
+                height: 500px !important;
+            }
+
+            .about-me {
+                min-height: 450px !important;
+            }
+        }
+    }
+
+    @media all and (max-width: 1100px) {
+        .hi-section {
+            margin: auto;
+            height: 450px;
+
+            .about-me {
+                min-height: 380px;
+            }
+        }
+
+        .image-section {
+            display: none !important;
+        }
+    }
+
     .background {
 
         position: absolute;
@@ -57,21 +91,30 @@
         margin-top: 170px;
 
         .about-me-container {
+            position: relative;
             display: flex;
             flex-direction: column;
             width: 100%;
 
             .buttons {
+                position: relative;
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
 
-                >* {
+                * {
+                    position: relative;
                     opacity: 0;
 
                     animation-name: fade-from-left-to-right;
                     animation-fill-mode: forwards;
                     animation-duration: 0.5s;
+                }
+
+                @media all and (max-width: 550px) {
+                    :nth-child(2) {
+                        display: none;
+                    }
                 }
             }
 
@@ -79,6 +122,10 @@
                 width: 100%;
                 min-height: 330px;
                 top: 0;
+
+                @media all and (max-width: 1400px) {
+                    min-height: 280px;
+                }
             }
         }
 
@@ -146,10 +193,19 @@
         animation-name: fade-from-left-to-right;
         animation-duration: 1s;
         animation-fill-mode: forwards;
+        animation-iteration-count: 1;
 
         .image-container {
             max-width: 100%;
             width: 500px;
+
+            @media all and (max-width: 1400px) {
+                width: 320px;
+
+                .skewed-image {
+                    width: 310px !important;
+                }
+            }
 
             .skewed-image {
                 width: 380px;
@@ -211,5 +267,4 @@
             }
         }
     }
-
 }

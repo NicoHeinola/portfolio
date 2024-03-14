@@ -1,6 +1,7 @@
 @import "styles/variables.scss";
 
 .hollow-button {
+    position: relative;
     width: 200px;
     height: 45px;
     border: 1px solid $text-color;

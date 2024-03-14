@@ -18,6 +18,10 @@
     transform: translateX(-50%);
     margin-top: 20px;
 
+    @media all and (max-width: 800px) {
+        display: none;
+    }
+
     &.no-delay {
         .container {
             opacity: 1;
