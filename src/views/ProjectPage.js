@@ -21,7 +21,7 @@ const ProjectPage = () => {
         {
             "title": "Auto Clicker",
             "images": ["images/projects/autoclicker_dark_theme.png", "images/projects/autoclicker_dark_theme.png"],
-            "description": "This is an all-round tool for automating mouse clicks and it click over 1000 times per second! Most autoclickers either don't have all the necessary features or cost money but this one's got them all. Plus this software is completely free!",
+            "description": "This is an all-round tool for automating mouse clicks and it can click over 1000 times per second! Most autoclickers either don't have all the necessary features or cost money but this one's got them all. Plus this software is completely free!",
             "code-languages": [{ "language": "Python", "image": "images/languages/python.png" }, { "language": "Tk/Tcl" }],
             "links": [{ "href": "https://github.com/NicoHeinola/AutoClicker", "image": "icons/github.png" }],
         },
