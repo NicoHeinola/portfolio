@@ -44,6 +44,7 @@
             height: 10px !important;
             overflow: hidden;
             opacity: 0.5 !important;
+            backdrop-filter: blur(3px);
 
             .links {
                 opacity: 0;

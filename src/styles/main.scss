@@ -124,5 +124,6 @@ h3 {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 7;
+    z-index: 0;
+    pointer-events: none;
 }
