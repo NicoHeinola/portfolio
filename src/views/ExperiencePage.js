@@ -6,7 +6,7 @@ const ExperiencePage = () => {
     const jobDescriptions = [
         {
             "title": "Alfons Digital",
-            "sub_title": "Junior Web Developer",
+            "sub_title": "Fullstack Developer",
             "logo": "images/work_logos/alfonsdigitaloy.png",
             "descriptions": [
                 {
