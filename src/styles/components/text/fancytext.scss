@@ -56,6 +56,11 @@
             }
 
             &.bottom-right {
+
+                @media all and (max-width: 800px) {
+                    display: none;
+                }
+
                 right: 0;
                 bottom: 5px;
                 direction: rtl;
