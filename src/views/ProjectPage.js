@@ -68,16 +68,16 @@ const ProjectPage = () => {
         {
             "title": "Movie Streaming Website",
             "images": ["images/projects/local_show_browser.png"],
-            "description": "A Netflix-like website that allows you to stream your own movies and shows to you and other people. Currently has: Login, Register, VLC Media Player supported video playing, Admin control system for various features such as site settings and shows. Coming soon: UI revamp, HLS-streaming videos directly on the website.",
-            "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }, { "language": "Python", "image": "images/languages/python.png" }, { "language": "Python-flask", "image": "" }, { "language": "SQLite", "image": "" }],
+            "description": "A Netflix-like website that allows you to stream your own movies and shows to you and even other people. Current features include users (login, register and admins), VLC mediaplayer support (for local hosting only), HLS video streaming, video conversion manager (allows you to convert any video to streamable HLS format), site settings page (admin only), show managing tools (admins only), shows page and episode watch status.",
+            "code-languages": [{ "language": "Vue.js", "image": "images/languages/vuejs.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }, { "language": "Python", "image": "images/languages/python.png" }, { "language": "Python-flask", "image": "" }, { "language": "SQLite", "image": "" }, { "language": "FFmpeg", "image": "" }],
             "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page", "image": "icons/github.png" }],
         },
         {
-            "title": "Portfolio",
-            "images": ["images/projects/portfolio.png"],
-            "description": "I'm actively updating this page to reflect my current projects and improving this website whenever I have time.",
-            "code-languages": [{ "language": "React", "image": "images/languages/react.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
-            "links": [{ "href": "https://github.com/NicoHeinola/portfolio", "text": "Github Page", "image": "icons/github.png" }],
+            "title": "ActionScripter",
+            "images": ["images/projects/actionscripter_1.png"],
+            "description": "A user-friendly tool to make automated scripts time-taking tasks for you. Most of programs like this are either missing something, have a terrible UI or cost money but this will solve all of those 3!",
+            "code-languages": [{ "language": "React", "image": "images/languages/react.png" }, { "language": "Redux", "image": "redux.svg" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }, { "language": "Python", "image": "images/languages/python.png" }, { "language": "Python-flask", "image": "" }, { "language": "Electron", "image": "images/languages/electron.png" }],
+            "links": [{ "href": "https://github.com/NicoHeinola/LocalShowBrowser_frontend", "text": "Github Page", "image": "icons/github.png" }],
         },
         {
             "title": "Lethal Company Mod Manager",
@@ -85,6 +85,13 @@ const ProjectPage = () => {
             "description": "a Tool that allows users to install and manage mods in a game called \"Lethal Company\". I'm still working on the UI and most of the functionalities such as downloading mods, creating modpacks and using them inside the game.",
             "code-languages": [{ "language": "C++", "image": "images/languages/c_plus_plus.png" }, { "language": "Qt6 (QML)", "image": "images/languages/qt.png" }],
             "links": [],
+        },
+        {
+            "title": "Portfolio",
+            "images": ["images/projects/portfolio.png"],
+            "description": "Holds most of my finished and on-going projects and some information about myself too. Features coming soon: dropped projects, more images to projects, more of my finished projects, project searching/filtering and more refined UI to the projects section.",
+            "code-languages": [{ "language": "React", "image": "images/languages/react.png" }, { "language": "JavaScript", "image": "images/languages/js.png" }, { "language": "SASS", "image": "images/languages/sass.png" }],
+            "links": [{ "href": "https://github.com/NicoHeinola/portfolio", "text": "Github Page", "image": "icons/github.png" }],
         },
     ]
 
@@ -94,43 +101,46 @@ const ProjectPage = () => {
                 <div className="bg"></div>
                 <div className="logo-list">
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/vuejs.png" />
+                        <img alt="Vue.js" className="image" src="images/languages/vuejs.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/react.png" />
+                        <img alt="React" className="image" src="images/languages/react.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/js.png" />
+                        <img alt="JavaScript" className="image" src="images/languages/js.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/php.png" />
+                        <img alt="PHP" className="image" src="images/languages/php.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/laravel.svg" />
+                        <img alt="Laravel/Lumen" className="image" src="images/languages/laravel.svg" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/css.png" />
+                        <img alt="CSS" className="image" src="images/languages/css.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/sass.png" />
+                        <img alt="SASS" className="image" src="images/languages/sass.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/python.png" />
+                        <img alt="Python" className="image" src="images/languages/python.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/c_plus_plus.png" />
+                        <img alt="C++" className="image" src="images/languages/c_plus_plus.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/c_sharp.png" />
+                        <img alt="C#" className="image" src="images/languages/c_sharp.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/qt.png" />
+                        <img alt="QT6" className="image" src="images/languages/qt.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/electron.png" />
+                        <img alt="Electron" className="image" src="images/languages/electron.png" />
                     </div>
                     <div className="logo">
-                        <img alt="" className="image" src="images/languages/unity.png" />
+                        <img alt="Unity" className="image" src="images/languages/unity.png" />
+                    </div>
+                    <div className="logo">
+                        <img alt="Redux" className="image" src="images/languages/redux.svg" />
                     </div>
                 </div>
             </div>
