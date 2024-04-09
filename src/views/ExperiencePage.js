@@ -6,11 +6,11 @@ const ExperiencePage = () => {
     const jobDescriptions = [
         {
             "title": "Alfons Digital",
-            "sub_title": "Fullstack Developer",
+            "sub_title": "Full Stack Developer",
             "logo": "images/work_logos/alfonsdigitaloy.png",
             "descriptions": [
                 {
-                    "text": "Fullstack development of online education platforms like Maol2 and Äly, utilizing Vue.js and Laravel/Lumen PHP framework"
+                    "text": "Full stack development of online education platforms like Maol2 and Äly, utilizing Vue.js and Laravel/Lumen PHP framework"
                 },
                 {
                     "text": "Writing PHP unit tests with Laravel/Lumen's unit library"
@@ -32,13 +32,13 @@ const ExperiencePage = () => {
             "logo": "images/work_logos/pv.png",
             "descriptions": [
                 {
-                    "text": "Served my military service as a software/fullstack developer"
+                    "text": "Served my military service as a software/Full stack developer"
                 },
                 {
                     "text": "Development of a desktop application with C++ and Qt 6 framework"
                 },
                 {
-                    "text": "Fullstack development of Styx which was used for remote management of computers (React, Rust, Express.js, Node.js, MongoDB)"
+                    "text": "Full stack development of Styx which was used for remote management of computers (React, Rust, Express.js, Node.js, MongoDB)"
                 }
             ]
         },

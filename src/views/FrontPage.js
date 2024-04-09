@@ -28,7 +28,7 @@ function FrontPage() {
                 <div className="about-me-container">
                     <div className="about-me">
                         <CursorText className="title" fontSize="big" delaySeconds={isFirefox ? 0.1 : 0.3} name={[{ text: "", waitSeconds: 0.50, speed: 0 }, { text: "Hi,", waitSeconds: 0.30, speed: 0.1 }, { text: " I'm Nico!", waitSeconds: 0, speed: 0.035 }]}></CursorText>
-                        <CursorText className="title job-title" fontSize="semi-big" delaySeconds={isFirefox ? 0.1 : 0.3} name={[{ text: "", waitSeconds: 1, speed: 0 }, { text: "Fullstack Developer", waitSeconds: 0.30, speed: 0.1 }]}></CursorText>
+                        <CursorText className="title job-title" fontSize="semi-big" delaySeconds={isFirefox ? 0.1 : 0.3} name={[{ text: "", waitSeconds: 1, speed: 0 }, { text: "Full stack Developer", waitSeconds: 0.30, speed: 0.1 }]}></CursorText>
                         <EncryptedCursorText decryptionCount={isFirefox ? 7 : 5} delaySeconds={isFirefox ? 0.1 : 0.5} decryptionDelaySeconds={0.02} fontSize="small" name={[{ text: "", waitSeconds: 1.8, speed: 0 }, { text: description, waitSeconds: 0, speed: 0.006 }]}>
                         </EncryptedCursorText>
                     </div>
